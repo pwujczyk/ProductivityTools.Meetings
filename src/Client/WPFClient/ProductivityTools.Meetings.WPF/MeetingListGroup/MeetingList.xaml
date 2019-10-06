@@ -22,14 +22,18 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0">-------------------</Label>
-                            <Label Grid.Row="1" Grid.Column="0">Before notes</Label>
-                            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding BeforeNotes}"></TextBox>
-                            <Label Grid.Row="3" Grid.Column="0">During notes</Label>
-                            <TextBox Grid.Row="4" Grid.Column="0"></TextBox>
-                            <Label Grid.Row="5" Grid.Column="0">After notes</Label>
+                            <Label Grid.Row="1" Grid.Column="0">Subject</Label>
+                            <TextBox Grid.Row="2" Grid.Column="0" Text="{Binding Subject}"></TextBox>
+                            <Label Grid.Row="3" Grid.Column="0">Before notes</Label>
+                            <TextBox Grid.Row="4" Grid.Column="0" Text="{Binding BeforeNotes}"></TextBox>
+                            <Label Grid.Row="5" Grid.Column="0">During notes</Label>
                             <TextBox Grid.Row="6" Grid.Column="0"></TextBox>
+                            <Label Grid.Row="7" Grid.Column="0">After notes</Label>
+                            <TextBox Grid.Row="8" Grid.Column="0"></TextBox>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
