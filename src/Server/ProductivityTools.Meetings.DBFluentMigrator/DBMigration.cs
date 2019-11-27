@@ -16,9 +16,7 @@ namespace ProductivityTools.Meetings.DBFluentMigrator
         private void CreateDatabase()
         {
             string connectionString = configuration.GetConnectionString("PTMeetings");
-            var parts = connectionString.Split(';');
-            var serverConnectionString = parts.Where(x => !x.Contains("Database")).Aggregate((current,next)=>current+";"+next);
-            var database = new CreateSQLServerDatabase.Database("PTMeetings", serverConnectionString);
+            var database = new CreateSQLServerDatabase.Database("PTMeetings", connectionString);
             database.CreateSilent();
         }
 
