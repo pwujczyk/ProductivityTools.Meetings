@@ -8,22 +8,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ItemsControl ItemsSource="{Binding Meetings}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <meetingitem:MeetingItemControl 
+        <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
+            <ItemsControl ItemsSource="{Binding Meetings}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+
+                        <meetingitem:MeetingItemControl 
+                        Title="{Binding Title}" 
+                        Date="{Binding Date}"
                         Before="{Binding BeforeNotes}" 
                         Notes="{Binding Notes}" 
-                        After="{Binding AfterNotes}">
+                        After="{Binding AfterNotes}"
+                        >
+                        </meetingitem:MeetingItemControl>
 
-                    </meetingitem:MeetingItemControl>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>

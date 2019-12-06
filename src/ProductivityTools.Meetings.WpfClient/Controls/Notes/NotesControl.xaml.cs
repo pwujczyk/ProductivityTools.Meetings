@@ -24,7 +24,14 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
         public string Text
         {
             get { return (string)GetValue(SetTextProperty); }
-            set { SetValue(SetTextProperty, value); }
+            set
+            {
+                SetValue(SetTextProperty, value);
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    this.Visibility = Visibility.Visible;
+                }   
+            }
         }
 
         private static void OnSetTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
