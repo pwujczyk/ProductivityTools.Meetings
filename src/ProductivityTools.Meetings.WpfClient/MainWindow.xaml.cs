@@ -1,5 +1,4 @@
-﻿using ProductivityTools.Meetings.WPF.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProductivityTools.Meetings.WPF.MeetingListGroup
+namespace ProductivityTools.Meetings.WpfClient
 {
     /// <summary>
-    /// Interaction logic for MeetingList.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MeetingList : Page,IView
+    public partial class MainWindow : Window
     {
-        public MeetingList()
+        public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MeetingListVM(this);
-
+            this.DataContext = new MeetingsVM();
         }
     }
 }
