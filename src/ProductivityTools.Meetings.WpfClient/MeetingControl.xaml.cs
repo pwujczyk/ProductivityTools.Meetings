@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProductivityTools.Meetings.WPF
+namespace ProductivityTools.Meetings.WpfClient
 {
     /// <summary>
-    /// Interaction logic for NewMeeting.xaml
+    /// Interaction logic for MeetingControl.xaml
     /// </summary>
-    public partial class NewMeeting : Page
+    public partial class MeetingControl : UserControl
     {
-        public NewMeeting()
+        public MeetingControl()
         {
             InitializeComponent();
         }

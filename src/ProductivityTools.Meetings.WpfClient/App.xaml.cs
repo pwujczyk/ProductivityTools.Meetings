@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ProductivityTools.Meetings.WPF
+namespace ProductivityTools.Meetings.WpfClient
 {
     /// <summary>
     /// Interaction logic for App.xaml

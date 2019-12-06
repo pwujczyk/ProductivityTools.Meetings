@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ProductivityTools.Meetings.WPF.Objects
+namespace ProductivityTools.Meetings.WpfClient
 {
-    public class MeetingView
+    public class Meeting
     {
+        public DateTime Date { get; set; }
         public string BeforeNotes { get; set; }
-        public string DuringNotes { get; set; }
+        public string Notes { get; set; }
         public string AfterNotes { get; set; }
     }
 }
