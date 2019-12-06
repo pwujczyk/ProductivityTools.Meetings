@@ -9,12 +9,18 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="0" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>
-        <notes:NotesControl x:Name="NotesControl" Grid.Row="1" Label="Meeting" Text="Meeting text"></notes:NotesControl>
-        <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="2" Label="After meeting" Text="After meeting text"></notes:NotesControl>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Name="MeetingTitleControl" Text="ddd" Grid.Row="0" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="MeetingDateControl" Text="fff" Grid.Row="0" HorizontalAlignment="Left" ></TextBox>
+        </StackPanel>
+        
+        <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="1" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>
+        <notes:NotesControl x:Name="NotesControl" Grid.Row="2" Label="Meeting" Text="Meeting text"></notes:NotesControl>
+        <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="3" Label="After meeting" Text="After meeting text"></notes:NotesControl>
     </Grid>
 </UserControl>

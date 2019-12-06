@@ -21,6 +21,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         public MeetingItemControl()
         {
             InitializeComponent();
+            this.AfterNotesControl.Visibility = Visibility.Collapsed;
         }
 
         #region BeforeNotes
@@ -85,10 +86,62 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         public string After
         {
             get { return (string)GetValue(AfterNotesProperty); }
-            set { SetValue(AfterNotesProperty, value); }
+            set
+            {
+                SetValue(AfterNotesProperty, value);
+                //if (string.IsNullOrEmpty(value))
+                //{
+                //    this.AfterNotesControl.Visibility = Visibility.Hidden;
+                //}
+            }
 
+        }
+        #endregion
+
+        #region Meeting title
+
+        private void OnTitleChanged(DependencyPropertyChangedEventArgs e)
+        {
+            this.MeetingTitleControl.Text = e.NewValue.ToString();
+        }
+
+        private static void OnTitleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MeetingItemControl meetingItemControl = obj as MeetingItemControl;
+            meetingItemControl.OnTitleChanged(e);
+        }
+
+        private static readonly DependencyProperty MeetingTitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnTitleChanged));
+
+        public string Title
+        {
+            get { return (string)GetValue(MeetingTitleProperty); }
+            set { SetValue(MeetingTitleProperty, value); }
+        }
+
+        #endregion
+
+        #region Date
+        private void OnDateChanged(DependencyPropertyChangedEventArgs e)
+        {
+            this.MeetingDateControl.Text = e.NewValue.ToString();
+        }
+
+        private static void OnDateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MeetingItemControl control = obj as MeetingItemControl;
+            control.OnDateChanged(e);
+        }
+
+        private static readonly DependencyProperty DateChangeProperty =
+            DependencyProperty.Register("Date", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnDateChanged));
+
+        public string Date
+        {
+            get { return (string)GetValue(DateChangeProperty); }
+            set { SetValue(DateChangeProperty, value); }
         }
         #endregion
     }
 }
-    
