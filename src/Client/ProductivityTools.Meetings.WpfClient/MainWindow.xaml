@@ -8,7 +8,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Click="Button_Click"></Button>
+        <ScrollViewer Grid.Row="1"  VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

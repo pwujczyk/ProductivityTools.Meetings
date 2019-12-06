@@ -25,5 +25,10 @@ namespace ProductivityTools.Meetings.WpfClient
             InitializeComponent();
             this.DataContext = new MeetingsVM();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            await (this.DataContext as MeetingsVM).UpdateMeetings();
+        }
     }
 }

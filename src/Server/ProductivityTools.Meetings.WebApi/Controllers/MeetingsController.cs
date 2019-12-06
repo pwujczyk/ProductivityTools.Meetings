@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ProductivityTools.Meetings.WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("Api/[controller]")]
     public class MeetingsController : ControllerBase
     {
         [HttpGet]
@@ -18,7 +18,15 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return DateTime.Now.ToString();
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("Test")]
+        public string Test()
+        {
+            return "Test";
+        }
+
+        [HttpPost]
+        [Route("Get")]
         public List<Meeting> Get()
         {
             var Meetings = new List<Meeting>();
