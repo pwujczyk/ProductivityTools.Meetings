@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.Meetings.WpfClient", "src\ProductivityTools.Meetings.WpfClient\ProductivityTools.Meetings.WpfClient.csproj", "{45FB7CD1-55D3-47A5-802A-8072BD61FA44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductivityTools.Meetings.WebApi", "src\ProductivityTools.Meetings.WebApi\ProductivityTools.Meetings.WebApi.csproj", "{23D674F8-4720-432D-9A8A-279F09076C30}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{A6CBCB6C-02B9-4702-AABD-7DAEB3E4D285}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductivityTools.Meetings.WebApi", "src\Server\ProductivityTools.Meetings.WebApi\ProductivityTools.Meetings.WebApi.csproj", "{AF463E0F-0E55-4F48-9E8E-233AAB83FF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,13 +19,16 @@ Global
 		{45FB7CD1-55D3-47A5-802A-8072BD61FA44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45FB7CD1-55D3-47A5-802A-8072BD61FA44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45FB7CD1-55D3-47A5-802A-8072BD61FA44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23D674F8-4720-432D-9A8A-279F09076C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23D674F8-4720-432D-9A8A-279F09076C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23D674F8-4720-432D-9A8A-279F09076C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23D674F8-4720-432D-9A8A-279F09076C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF463E0F-0E55-4F48-9E8E-233AAB83FF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF463E0F-0E55-4F48-9E8E-233AAB83FF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF463E0F-0E55-4F48-9E8E-233AAB83FF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF463E0F-0E55-4F48-9E8E-233AAB83FF15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AF463E0F-0E55-4F48-9E8E-233AAB83FF15} = {A6CBCB6C-02B9-4702-AABD-7DAEB3E4D285}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D37192C2-AFF3-4ACB-BB59-9BA332B0BCD8}
