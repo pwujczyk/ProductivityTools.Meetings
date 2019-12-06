@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
+        xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -15,7 +16,12 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:MeetingControl></local:MeetingControl>
+                    <meetingitem:MeetingItemControl 
+                        Before="{Binding BeforeNotes}" 
+                        Notes="{Binding Notes}" 
+                        After="{Binding AfterNotes}">
+
+                    </meetingitem:MeetingItemControl>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
