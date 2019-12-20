@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProducvitityTools.Meetings.Queries;
 
 namespace ProductivityTools.Meetings.WebApi
 {
@@ -26,6 +27,7 @@ namespace ProductivityTools.Meetings.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.ConfigureServicesQueries();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

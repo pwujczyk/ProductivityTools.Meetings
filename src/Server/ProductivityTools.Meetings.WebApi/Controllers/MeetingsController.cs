@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductivityTools.Meetings.CoreObjects;
+using ProducvitityTools.Meetings.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,14 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
     [Route("api/[controller]")]
     public class MeetingsController : ControllerBase
     {
+
+        IMeetingQueries MeetingQueries;
+
+        public MeetingsController(IMeetingQueries meetingQueries)
+        {
+            this.MeetingQueries = meetingQueries;
+        }
+
         [HttpGet]
         [Route("Date")]
         public string GetDate()
@@ -22,6 +31,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [Route("List")]
         public List<Meeting> Get()
         {
+            var partresult = MeetingQueries.GetMeetings();
+
             var Meetings = new List<Meeting>();
             Meetings.Add(new Meeting() { Title = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", Notes = "Notes1", AfterNotes = "" });
             Meetings.Add(new Meeting() { Title = "Title2", Date = DateTime.Now.AddDays(1), BeforeNotes = "Before2", Notes = "Notes2", AfterNotes = "After2" });
