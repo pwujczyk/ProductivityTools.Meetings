@@ -18,7 +18,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return DateTime.Now.ToString();
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("List")]
         public List<Meeting> Get()
         {
             var Meetings = new List<Meeting>();
