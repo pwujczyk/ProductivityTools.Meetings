@@ -24,11 +24,12 @@
                     <DataTemplate>
 
                         <meetingitem:MeetingItemControl 
-                        Title="{Binding Title}" 
+                        Subject="{Binding Subject}" 
                         Date="{Binding Date}"
-                        Before="{Binding BeforeNotes}" 
-                        Notes="{Binding Notes}" 
-                        After="{Binding AfterNotes}"
+                        BeforeNotes="{Binding BeforeNotes}" 
+                        DuringNotes="{Binding DuringNotes}" 
+                        AfterNotes="{Binding AfterNotes}"
+                        Id="{Binding MeetingId}"
                         >
                         </meetingitem:MeetingItemControl>
 

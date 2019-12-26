@@ -25,53 +25,53 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
 
         #region BeforeNotes
-        private void OnBeforeChanged(DependencyPropertyChangedEventArgs e)
+        private void OnBeforeNotesChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.BeforeNotesControl.Text = e.NewValue.ToString();
+            this.BeforeNotesControl.Text = e.NewValue?.ToString();
         }
 
-        private static void OnBeforeChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        private static void OnBeforeNotesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MeetingItemControl control = obj as MeetingItemControl;
-            control.OnBeforeChanged(e);
+            control.OnBeforeNotesChanged(e);
         }
 
-        public static readonly DependencyProperty BeforeProperty =
-            DependencyProperty.Register("Before", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnBeforeChanged));
+        public static readonly DependencyProperty BeforeNotesProperty =
+            DependencyProperty.Register("BeforeNotes", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnBeforeNotesChanged));
 
-        public string Before
+        public string BeforeNotes
         {
-            get { return (string)GetValue(BeforeProperty); }
-            set { SetValue(BeforeProperty, value); }
+            get { return (string)GetValue(BeforeNotesProperty); }
+            set { SetValue(BeforeNotesProperty, value); }
         }
         #endregion
 
-        #region Notes
-        private void OnNotesChanged(DependencyPropertyChangedEventArgs e)
+        #region DuringNotes
+        private void OnDuringNotesChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.NotesControl.Text = e.NewValue.ToString();
+            this.NotesControl.Text = e.NewValue?.ToString();
         }
 
-        private static void OnNotesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        private static void OnDuringNotesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MeetingItemControl meetingItemControl = obj as MeetingItemControl;
-            meetingItemControl.OnNotesChanged(e);
+            meetingItemControl.OnDuringNotesChanged(e);
         }
 
-        public static readonly DependencyProperty NotesProperty =
-            DependencyProperty.Register("Notes", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnNotesChanged));
+        public static readonly DependencyProperty DuringNotesProperty =
+            DependencyProperty.Register("DuringNotes", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnDuringNotesChanged));
 
-        public string Notes
+        public string DuringNotes
         {
-            get { return (string)GetValue(NotesProperty); }
-            set { SetValue(NotesProperty, value); }
+            get { return (string)GetValue(DuringNotesProperty); }
+            set { SetValue(DuringNotesProperty, value); }
         }
         #endregion
 
         #region AfterNotes
         private void OnAfterNotesChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.AfterNotesControl.Text = e.NewValue.ToString();
+            this.AfterNotesControl.Text = e.NewValue?.ToString();
         }
 
         private static void OnAfterNotesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -81,9 +81,9 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
 
         public static readonly DependencyProperty AfterNotesProperty =
-            DependencyProperty.Register("After", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnAfterNotesChanged));
+            DependencyProperty.Register("AfterNotes", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnAfterNotesChanged));
 
-        public string After
+        public string AfterNotes
         {
             get { return (string)GetValue(AfterNotesProperty); }
             set
@@ -98,26 +98,51 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
         #endregion
 
-        #region Meeting title
+        #region Meeting Id
 
-        private void OnTitleChanged(DependencyPropertyChangedEventArgs e)
+        private void OnIdChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.MeetingTitleControl.Text = e.NewValue.ToString();
+            this.MeetingIdControl.Text = e.NewValue?.ToString();
         }
 
-        private static void OnTitleChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        private static void OnIdChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MeetingItemControl meetingItemControl = obj as MeetingItemControl;
-            meetingItemControl.OnTitleChanged(e);
+            meetingItemControl.OnIdChanged(e);
         }
 
-        private static readonly DependencyProperty MeetingTitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnTitleChanged));
+        private static readonly DependencyProperty MeetingIdProperty =
+            DependencyProperty.Register("Id", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnIdChanged));
 
-        public string Title
+        public string Id
         {
-            get { return (string)GetValue(MeetingTitleProperty); }
-            set { SetValue(MeetingTitleProperty, value); }
+            get { return (string)GetValue(MeetingIdProperty); }
+            set { SetValue(MeetingIdProperty, value); }
+        }
+
+        #endregion
+
+
+        #region Meeting subject
+
+        private void OnSubjectChanged(DependencyPropertyChangedEventArgs e)
+        {
+            this.MeetingSubjectControl.Text = e.NewValue?.ToString();
+        }
+
+        private static void OnSubjectChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MeetingItemControl meetingItemControl = obj as MeetingItemControl;
+            meetingItemControl.OnSubjectChanged(e);
+        }
+
+        private static readonly DependencyProperty MeetingSubjectProperty =
+            DependencyProperty.Register("Subject", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnSubjectChanged));
+
+        public string Subject
+        {
+            get { return (string)GetValue(MeetingSubjectProperty); }
+            set { SetValue(MeetingSubjectProperty, value); }
         }
 
         #endregion

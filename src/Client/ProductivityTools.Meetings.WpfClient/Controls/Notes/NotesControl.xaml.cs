@@ -42,7 +42,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
 
         private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
         {
-            Notes.Text = e.NewValue.ToString();
+            Notes.Text = e.NewValue?.ToString();
         }
 
         public static readonly DependencyProperty SetLabelProperty =
