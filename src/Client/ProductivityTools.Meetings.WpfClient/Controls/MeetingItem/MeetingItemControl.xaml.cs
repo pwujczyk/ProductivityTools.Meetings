@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -150,7 +151,8 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         #region Date
         private void OnDateChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.MeetingDateControl.Text = e.NewValue.ToString();
+            DateTime dt = DateTime.Parse(e.NewValue.ToString());
+            this.MeetingDateControl.Text = dt.ToString("dddd - yyyy.MM.dd", CultureInfo.InvariantCulture);
         }
 
         private static void OnDateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -160,11 +162,11 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
 
         private static readonly DependencyProperty DateChangeProperty =
-            DependencyProperty.Register("Date", typeof(string), typeof(MeetingItemControl), new PropertyMetadata("", OnDateChanged));
+            DependencyProperty.Register("Date", typeof(DateTime), typeof(MeetingItemControl), new PropertyMetadata(default(DateTime), OnDateChanged));
 
-        public string Date
+        public DateTime Date
         {
-            get { return (string)GetValue(DateChangeProperty); }
+            get { return (DateTime)GetValue(DateChangeProperty); }
             set { SetValue(DateChangeProperty, value); }
         }
         #endregion
