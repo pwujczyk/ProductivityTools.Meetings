@@ -27,10 +27,14 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
             set
             {
                 SetValue(SetTextProperty, value);
-                if (!string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    this.Visibility = Visibility.Collapsed;
+                }   
+                else
                 {
                     this.Visibility = Visibility.Visible;
-                }   
+                }
             }
         }
 

@@ -17,7 +17,7 @@ namespace ProducvitityTools.Meetings.Queries
 
         public List<Meeting> GetMeetings()
         {
-            var result = this.MeetingContext.Meeting.ToList();
+            var result = this.MeetingContext.Meeting.OrderByDescending(x=>x.Date).ToList();
             return result;
         }
     }
