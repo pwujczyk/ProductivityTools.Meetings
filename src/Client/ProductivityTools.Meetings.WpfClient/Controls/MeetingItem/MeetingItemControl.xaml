@@ -15,8 +15,9 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox Name="MeetingTitleControl" Text="ddd" Grid.Row="0" HorizontalAlignment="Left"></TextBox>
-            <TextBox Name="MeetingDateControl" Text="fff" Grid.Row="0" HorizontalAlignment="Left" ></TextBox>
+            <TextBox Name="MeetingIdControl" Text="HereId" Grid.Row="0" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="MeetingSubjectControl" Text="Here Title" Grid.Row="0" HorizontalAlignment="Left"></TextBox>
+            <TextBox Name="MeetingDateControl" Text="Here Date" Grid.Row="0" HorizontalAlignment="Left" ></TextBox>
         </StackPanel>
         
         <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="1" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>
