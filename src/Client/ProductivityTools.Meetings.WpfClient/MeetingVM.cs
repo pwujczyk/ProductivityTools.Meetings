@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace ProductivityTools.Meetings.WpfClient
 {
-    public class Meeting
+    public class MeetingVM
     {
 
 
@@ -18,14 +18,15 @@ namespace ProductivityTools.Meetings.WpfClient
 
         public ICommand EditMeetingCommand { get; }
 
-        public Meeting()
+        public MeetingVM()
         {
             EditMeetingCommand = new CommandHandler(EditMeetingClick, () => true);
         }
 
         private void EditMeetingClick()
         {
-
+            EditMeeting editMeetingWindow = new EditMeeting(this);
+            editMeetingWindow.ShowDialog();
         }
     }
 }
