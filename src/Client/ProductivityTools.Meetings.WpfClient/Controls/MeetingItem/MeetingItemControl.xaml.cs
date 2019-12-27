@@ -25,6 +25,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             this.AfterNotesControl.Visibility = Visibility.Collapsed;
         }
 
+
         #region BeforeNotes
         private void OnBeforeNotesChanged(DependencyPropertyChangedEventArgs e)
         {
@@ -123,7 +124,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         #endregion
 
-
         #region Meeting subject
 
         private void OnSubjectChanged(DependencyPropertyChangedEventArgs e)
@@ -170,5 +170,36 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             set { SetValue(DateChangeProperty, value); }
         }
         #endregion
+
+
+        #region EditButton
+        //private void OnDateChanged(DependencyPropertyChangedEventArgs e)
+        //{
+        //    DateTime dt = DateTime.Parse(e.NewValue.ToString());
+        //    this.MeetingDateControl.Text = dt.ToString("dddd - yyyy.MM.dd", CultureInfo.InvariantCulture);
+        //}
+
+        //private static void OnDateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        //{
+        //    MeetingItemControl control = obj as MeetingItemControl;
+        //    control.OnDateChanged(e);
+        //}
+
+        private static readonly DependencyProperty EditClickedProperty =
+            DependencyProperty.Register("EditClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
+
+        public ICommand EditClicked
+        {
+            get
+            {
+                return (ICommand)GetValue(EditClickedProperty);
+            }
+            set
+            {
+                SetValue(EditClickedProperty, value);
+            }
+        }
+        #endregion
+
     }
 }

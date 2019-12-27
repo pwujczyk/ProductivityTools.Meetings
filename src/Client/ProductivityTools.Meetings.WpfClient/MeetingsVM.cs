@@ -12,25 +12,22 @@ namespace ProductivityTools.Meetings.WpfClient
     {
         public ObservableCollection<Meeting> Meetings { get; set; }
 
-        public ICommand GetMeetings { get; }
+        public ICommand GetMeetingsCommand { get; }
+        
 
         public MeetingsVM()
         {
             this.Meetings = new ObservableCollection<Meeting>();
 
-            GetMeetings = new CommandHandler(Execute, () => true);
+            GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
+        
             this.Meetings.Add(new Meeting() { Subject = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", DuringNotes = "Notes1", AfterNotes = "" });
-            //this.Meetings.Add(new Meeting() { Title = "Title2", Date = DateTime.Now.AddDays(1), BeforeNotes = "Before2", Notes = "Notes2", AfterNotes = "After2" });
-            //this.Meetings.Add(new Meeting() { Title = "Title3", Date = DateTime.Now.AddDays(2), BeforeNotes = "Before3", Notes = "Notes3", AfterNotes = "After3" });
-            //this.Meetings.Add(new Meeting() { Title = "Title4", Date = DateTime.Now.AddDays(3), BeforeNotes = "Before4", Notes = "Notes4", AfterNotes = "After4" });
-            //this.Meetings.Add(new Meeting() { Title = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", Notes = "Notes1", AfterNotes = "" });
-            //this.Meetings.Add(new Meeting() { Title = "Title2", Date = DateTime.Now.AddDays(1), BeforeNotes = "Before2", Notes = "Notes2", AfterNotes = "After2" });
-            //this.Meetings.Add(new Meeting() { Title = "Title3", Date = DateTime.Now.AddDays(2), BeforeNotes = "Before3", Notes = "Notes3", AfterNotes = "After3" });
-            //this.Meetings.Add(new Meeting() { Title = "Title4", Date = DateTime.Now.AddDays(3), BeforeNotes = "Before4", Notes = "Notes4", AfterNotes = "After4" });
 
         }
 
-        private async void Execute()
+        
+
+        private async void GetMeetings()
         {
             MeetingsClient client = new MeetingsClient();
             var xx = await client.GetMeetings();
