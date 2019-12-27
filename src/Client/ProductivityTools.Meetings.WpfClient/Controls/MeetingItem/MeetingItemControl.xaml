@@ -21,6 +21,8 @@
             <TextBox Name="MeetingIdControl" Text="HereId" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
             <TextBox Name="MeetingDateControl" Text="Here Date" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
             <TextBox Name="MeetingSubjectControl" Text="Here Title" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
+            <Button x:Name="EditMeeting" Content="Edit" Width="30"
+                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MeetingItemControl}}, Path=EditClicked}" ></Button>    
         </StackPanel>
 
         <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>

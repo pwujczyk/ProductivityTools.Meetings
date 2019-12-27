@@ -12,7 +12,7 @@
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Command="{Binding GetMeetings}"></Button>
+        <Button Grid.Row="0" Command="{Binding GetMeetingsCommand}"></Button>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>
@@ -30,6 +30,7 @@
                         DuringNotes="{Binding DuringNotes}" 
                         AfterNotes="{Binding AfterNotes}"
                         Id="{Binding MeetingId}"
+                        EditClicked="{Binding EditMeetingCommand}"
                         >
                         </meetingitem:MeetingItemControl>
 
