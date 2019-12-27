@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
+        xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
         mc:Ignorable="d"
         Title="EditMeeting" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <meetingitem:MeetingItemControl 
+            
+            Subject="{Binding Subject}" 
+                        Date="{Binding Date}"
+                        BeforeNotes="{Binding BeforeNotes}" 
+                        DuringNotes="{Binding DuringNotes}" 
+                        AfterNotes="{Binding AfterNotes}"
+                        Id="{Binding MeetingId}"
+                        EditClicked="{Binding EditMeetingCommand}"
+            ></meetingitem:MeetingItemControl>
     </Grid>
 </Window>

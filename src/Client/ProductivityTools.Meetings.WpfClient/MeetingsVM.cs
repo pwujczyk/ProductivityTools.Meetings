@@ -10,18 +10,18 @@ namespace ProductivityTools.Meetings.WpfClient
 {
     public class MeetingsVM
     {
-        public ObservableCollection<Meeting> Meetings { get; set; }
+        public ObservableCollection<MeetingVM> Meetings { get; set; }
 
         public ICommand GetMeetingsCommand { get; }
         
 
         public MeetingsVM()
         {
-            this.Meetings = new ObservableCollection<Meeting>();
+            this.Meetings = new ObservableCollection<MeetingVM>();
 
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
         
-            this.Meetings.Add(new Meeting() { Subject = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", DuringNotes = "Notes1", AfterNotes = "" });
+            this.Meetings.Add(new MeetingVM() { Subject = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", DuringNotes = "Notes1", AfterNotes = "" });
 
         }
 
@@ -34,7 +34,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
             foreach (var item in xx)
             {
-                var meeting = AutoMapperConfiguration.Configuration.Map<ProductivityTools.Meetings.CoreObjects.Meeting, Meeting>(item);
+                var meeting = AutoMapperConfiguration.Configuration.Map<ProductivityTools.Meetings.CoreObjects.Meeting, MeetingVM>(item);
                 this.Meetings.Add(meeting);
             }
         }
