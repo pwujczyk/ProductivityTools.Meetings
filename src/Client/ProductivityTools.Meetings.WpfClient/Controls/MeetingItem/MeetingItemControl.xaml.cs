@@ -171,20 +171,32 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
         #endregion
 
+        #region ReadOnly
+        public bool ReadOnly
+        {
+            get { return (bool)GetValue(ReadOnlyProperty); }
+            set { SetValue(ReadOnlyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ReadOnlyProperty =
+            DependencyProperty.Register("ReadOnly", typeof(bool), typeof(MeetingItemControl), new PropertyMetadata(true));
+
+
+        private void OneadOnlyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            //this.AfterNotes.NotesVisibility = this.BeforeNotes.NotesVisibility;
+        }
+
+        private static void OneadOnlyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            MeetingItemControl control = obj as MeetingItemControl;
+            control.OneadOnlyChanged(e);
+        }
+        #endregion
+
 
         #region EditButton
-        //private void OnDateChanged(DependencyPropertyChangedEventArgs e)
-        //{
-        //    DateTime dt = DateTime.Parse(e.NewValue.ToString());
-        //    this.MeetingDateControl.Text = dt.ToString("dddd - yyyy.MM.dd", CultureInfo.InvariantCulture);
-        //}
-
-        //private static void OnDateChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
-        //{
-        //    MeetingItemControl control = obj as MeetingItemControl;
-        //    control.OnDateChanged(e);
-        //}
-
         private static readonly DependencyProperty EditClickedProperty =
             DependencyProperty.Register("EditClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
 

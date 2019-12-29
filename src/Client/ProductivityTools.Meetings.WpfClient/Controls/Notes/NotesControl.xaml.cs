@@ -13,44 +13,26 @@ using System.Windows.Shapes;
 
 namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
 {
-    /// <summary>
-    /// Interaction logic for NotesControl.xaml
-    /// </summary>
     public partial class NotesControl : UserControl
     {
-        public static readonly DependencyProperty SetTextProperty =
-        DependencyProperty.Register("Text", typeof(string), typeof(NotesControl), new PropertyMetadata("", new PropertyChangedCallback(OnSetTextChanged)));
-
-        public string Text
+        public NotesControl()
         {
-            get { return (string)GetValue(SetTextProperty); }
-            set
-            {
-                SetValue(SetTextProperty, value);
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    this.Visibility = Visibility.Collapsed;
-                }   
-                else
-                {
-                    this.Visibility = Visibility.Visible;
-                }
-            }
+            InitializeComponent();
         }
 
-        private static void OnSetTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public NotesVisibility NotesVisibility
         {
-            NotesControl notesControl = d as NotesControl;
-            notesControl.OnSetTextChanged(e);
+            get { return (NotesVisibility)GetValue(NotesVisibilityProperty); }
+            set { SetValue(NotesVisibilityProperty, value); }
         }
 
-        private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
-        {
-            Notes.Text = e.NewValue?.ToString();
-        }
+        public static readonly DependencyProperty NotesVisibilityProperty =
+            DependencyProperty.Register("NotesVisibility", typeof(NotesVisibility), typeof(NotesControl), new PropertyMetadata(NotesVisibility.CollapsedWhenEmpty));
 
+
+        #region label
         public static readonly DependencyProperty SetLabelProperty =
-            DependencyProperty.Register("Label", typeof(string), typeof(NotesControl), new PropertyMetadata("", new PropertyChangedCallback(OnSetLabelChanged)));
+         DependencyProperty.Register("Label", typeof(string), typeof(NotesControl), new PropertyMetadata("", new PropertyChangedCallback(OnSetLabelChanged)));
 
         public string Label
         {
@@ -68,10 +50,38 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
         {
             LabelControl.Content = e.NewValue.ToString();
         }
+        #endregion
 
-        public NotesControl()
+        #region Text
+        public static readonly DependencyProperty SetTextProperty = DependencyProperty.Register("Text", typeof(string), typeof(NotesControl), new PropertyMetadata("", new PropertyChangedCallback(OnSetTextChanged)));
+
+        public string Text
         {
-            InitializeComponent();
+            get { return (string)GetValue(SetTextProperty); }
+            set
+            {
+                SetValue(SetTextProperty, value);
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.Visibility = Visibility.Visible;
+                }
+            }
         }
+
+        private static void OnSetTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NotesControl notesControl = d as NotesControl;
+            notesControl.OnSetTextChanged(e);
+        }
+
+        private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
+        {
+            Notes.Text = e.NewValue?.ToString();
+        }
+        #endregion
     }
 }
