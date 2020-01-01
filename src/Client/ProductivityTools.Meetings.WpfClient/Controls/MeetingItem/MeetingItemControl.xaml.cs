@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductivityTools.Meetings.WpfClient.Controls.Notes;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
@@ -51,7 +52,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         #region DuringNotes
         private void OnDuringNotesChanged(DependencyPropertyChangedEventArgs e)
         {
-            this.NotesControl.Text = e.NewValue?.ToString();
+            this.DuringNotesControl.Text = e.NewValue?.ToString();
         }
 
         private static void OnDuringNotesChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
@@ -180,18 +181,21 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ReadOnlyProperty =
-            DependencyProperty.Register("ReadOnly", typeof(bool), typeof(MeetingItemControl), new PropertyMetadata(true));
+            DependencyProperty.Register("ReadOnly", typeof(bool), typeof(MeetingItemControl), new PropertyMetadata(true, OnReadOnlyChanged));
 
 
-        private void OneadOnlyChanged(DependencyPropertyChangedEventArgs e)
+        private void OnReadOnlyChanged(DependencyPropertyChangedEventArgs e)
         {
-            //this.AfterNotes.NotesVisibility = this.BeforeNotes.NotesVisibility;
+            NotesVisibility visibility = (bool)e.NewValue ? NotesVisibility.CollapsedWhenEmpty : NotesVisibility.AlwaysVisible;
+            this.AfterNotesControl.NotesVisibility =
+            this.BeforeNotesControl.NotesVisibility =
+            this.DuringNotesControl.NotesVisibility = visibility;
         }
 
-        private static void OneadOnlyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        private static void OnReadOnlyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             MeetingItemControl control = obj as MeetingItemControl;
-            control.OneadOnlyChanged(e);
+            control.OnReadOnlyChanged(e);
         }
         #endregion
 

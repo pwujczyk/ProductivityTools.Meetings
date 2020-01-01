@@ -26,7 +26,7 @@
         </StackPanel>
 
         <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>
-        <notes:NotesControl x:Name="NotesControl" Grid.Row="3" Label="During Meeting" Text="During meeting text"></notes:NotesControl>
+        <notes:NotesControl x:Name="DuringNotesControl" Grid.Row="3" Label="During Meeting" Text="During meeting text"></notes:NotesControl>
         <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="4" Label="After meeting" Text="After meeting text"></notes:NotesControl>
     </Grid>
 </UserControl>
