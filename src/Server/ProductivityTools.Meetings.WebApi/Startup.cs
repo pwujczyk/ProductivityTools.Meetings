@@ -45,6 +45,7 @@ namespace ProductivityTools.Meetings.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
             app.UseEndpoints(endpoints =>
             {

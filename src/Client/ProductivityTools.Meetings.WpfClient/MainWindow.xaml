@@ -33,7 +33,7 @@
                         EditClicked="{Binding EditMeetingCommand}"
                         ReadOnly="True"
                         >
-                        </meetingitem:MeetingItemControl>
+                        </meetingitem:MeetingItemControl >
 
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

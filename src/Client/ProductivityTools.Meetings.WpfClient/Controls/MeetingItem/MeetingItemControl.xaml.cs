@@ -23,7 +23,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         public MeetingItemControl()
         {
             InitializeComponent();
-            this.AfterNotesControl.Visibility = Visibility.Collapsed;
         }
 
 
@@ -186,10 +185,13 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         private void OnReadOnlyChanged(DependencyPropertyChangedEventArgs e)
         {
-            NotesVisibility visibility = (bool)e.NewValue ? NotesVisibility.CollapsedWhenEmpty : NotesVisibility.AlwaysVisible;
+            var @readonly = (bool)e.NewValue;
+            NotesVisibility visibility = @readonly ? NotesVisibility.CollapsedWhenEmpty : NotesVisibility.AlwaysVisible;
             this.AfterNotesControl.NotesVisibility =
             this.BeforeNotesControl.NotesVisibility =
             this.DuringNotesControl.NotesVisibility = visibility;
+            this.SaveMeeting.Visibility = @readonly ? Visibility.Hidden : Visibility.Visible;
+            this.EditMeeting.Visibility = !@readonly ? Visibility.Hidden : Visibility.Visible;
         }
 
         private static void OnReadOnlyChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)

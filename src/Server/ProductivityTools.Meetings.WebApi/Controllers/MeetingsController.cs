@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProductivityTools.Meetings.CoreObjects;
+using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
     {
         private readonly IMapper mapper;
         IMeetingQueries MeetingQueries;
+        IMeetingCommands MeetingCommands;
 
-        public MeetingsController(IMeetingQueries meetingQueries,IMapper mapper)
+        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper)
         {
             this.MeetingQueries = meetingQueries;
             this.mapper = mapper;
+            this.MeetingCommands = meetingCommands;
         }
 
         [HttpGet]
@@ -34,18 +37,14 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         public List<Meeting> Get()
         {
             var partresult = MeetingQueries.GetMeetings();
-
-            //var Meetings = new List<Meeting>();
-            //Meetings.Add(new Meeting() { Title = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", Notes = "Notes1", AfterNotes = "" });
-            //Meetings.Add(new Meeting() { Title = "Title2", Date = DateTime.Now.AddDays(1), BeforeNotes = "Before2", Notes = "Notes2", AfterNotes = "After2" });
-            //Meetings.Add(new Meeting() { Title = "Title3", Date = DateTime.Now.AddDays(2), BeforeNotes = "Before3", Notes = "Notes3", AfterNotes = "After3" });
-            //Meetings.Add(new Meeting() { Title = "Title4", Date = DateTime.Now.AddDays(3), BeforeNotes = "Before4", Notes = "Notes4", AfterNotes = "After4" });
-            //Meetings.Add(new Meeting() { Title = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", Notes = "Notes1", AfterNotes = "" });
-            //Meetings.Add(new Meeting() { Title = "Title2", Date = DateTime.Now.AddDays(1), BeforeNotes = "Before2", Notes = "Notes2", AfterNotes = "After2" });
-            //Meetings.Add(new Meeting() { Title = "Title3", Date = DateTime.Now.AddDays(2), BeforeNotes = "Before3", Notes = "Notes3", AfterNotes = "After3" });
-            //Meetings.Add(new Meeting() { Title = "Title4", Date = DateTime.Now.AddDays(3), BeforeNotes = "Before4", Notes = "Notes4", AfterNotes = "After4" });
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
             return result;
+        }
+
+        public void Save(Meeting meeting)
+        {
+            Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);
+            MeetingCommands.Save(dbMeeting);
         }
     }
 }

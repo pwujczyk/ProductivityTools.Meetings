@@ -7,7 +7,7 @@ namespace ProductivityTools.Meetings.Database
 {
     public static class Services
     {
-        public static IServiceCollection ConfigureSerticesDatabase(this IServiceCollection services)
+        public static IServiceCollection ConfigureServicesDatabase(this IServiceCollection services)
         {
             services.AddScoped<MeetingContext>();
             return services;
