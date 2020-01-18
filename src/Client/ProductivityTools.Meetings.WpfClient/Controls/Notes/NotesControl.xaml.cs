@@ -61,7 +61,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
             set
             {
                 SetValue(SetTextProperty, value);
-                if (string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value) && this.NotesVisibility==NotesVisibility.CollapsedWhenEmpty)
                 {
                     this.Visibility = Visibility.Collapsed;
                 }

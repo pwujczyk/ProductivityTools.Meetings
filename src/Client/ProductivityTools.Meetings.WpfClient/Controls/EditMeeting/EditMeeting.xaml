@@ -20,7 +20,7 @@
                         AfterNotes="{Binding AfterNotes}"
                         Id="{Binding MeetingId}"
                         EditClicked="{Binding EditMeetingCommand}"
-               ReadOnly="False"
+                        ReadOnly="False"
             ></meetingitem:MeetingItemControl>
     </Grid>
 </Window>
