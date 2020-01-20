@@ -31,6 +31,7 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             MeetingsClient client = new MeetingsClient();
             var xx = await client.GetMeetings();
+            await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
 
             foreach (var item in xx)
             {

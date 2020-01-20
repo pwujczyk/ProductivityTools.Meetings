@@ -201,7 +201,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         }
         #endregion
 
-
         #region EditButton
         private static readonly DependencyProperty EditClickedProperty =
             DependencyProperty.Register("EditClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
@@ -218,6 +217,5 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             }
         }
         #endregion
-
     }
 }

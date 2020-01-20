@@ -20,7 +20,11 @@ namespace ProductivityTools.Meetings.ClientCaller
         {
             var r= this.HttpPostClient.Post<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName);
             return await r;
-            
+        }
+
+        public async Task SaveMeeting(Meeting meeting)
+        {
+            await this.HttpPostClient.Post<Meeting>(Consts.MeetingControllerName, Consts.AddMeetingName, meeting);
         }
     }
 }

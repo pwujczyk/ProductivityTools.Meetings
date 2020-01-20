@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 
 namespace ProductivityTools.Meetings.WebApi
@@ -29,6 +30,7 @@ namespace ProductivityTools.Meetings.WebApi
         {
             services.AddControllers();
             services.ConfigureServicesQueries();
+            services.ConfigureServicesCommands(); 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

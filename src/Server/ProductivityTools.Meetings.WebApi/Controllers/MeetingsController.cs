@@ -33,7 +33,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("List")]
+        [Route(Consts.ListName)]
         public List<Meeting> Get()
         {
             var partresult = MeetingQueries.GetMeetings();
@@ -41,6 +41,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return result;
         }
 
+        [HttpPost]
+        [Route(Consts.AddMeetingName)]
         public void Save(Meeting meeting)
         {
             Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);

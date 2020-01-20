@@ -8,7 +8,7 @@ namespace ProducvitityTools.Meetings.Commands
 {
     public static class Services
     {
-        public static IServiceCollection ConfigureServicesQueries(this IServiceCollection services)
+        public static IServiceCollection ConfigureServicesCommands(this IServiceCollection services)
         {
             services.AddScoped<IMeetingCommands, MeetingCommands>();
             services.ConfigureServicesDatabase();
