@@ -8,5 +8,6 @@ namespace ProductivityTools.Meetings.CoreObjects
     {
         public const string MeetingControllerName = "Meetings";
         public const string ListName = "List";
+        public const string AddMeetingName = "Add";
     }
 }
