@@ -217,5 +217,22 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             }
         }
         #endregion
+
+        #region EditButton
+        private static readonly DependencyProperty SaveClickedProperty =
+            DependencyProperty.Register("SaveClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
+
+        public ICommand SaveClicked
+        {
+            get
+            {
+                return (ICommand)GetValue(SaveClickedProperty);
+            }
+            set
+            {
+                SetValue(SaveClickedProperty, value);
+            }
+        }
+        #endregion
     }
 }

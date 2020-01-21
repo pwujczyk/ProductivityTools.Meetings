@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,13 +18,13 @@ namespace ProductivityTools.Meetings.WpfClient
     /// </summary>
     public partial class EditMeeting : Window
     {
-        MeetingVM meeting;
+        MeetingItemVM meeting;
         public EditMeeting()
         {
             InitializeComponent();
         }
 
-        public EditMeeting(MeetingVM meeting) : this()
+        public EditMeeting(MeetingItemVM meeting) : this()
         {
             this.meeting = meeting;
             this.DataContext = this.meeting;

@@ -7,9 +7,9 @@ namespace ProductivityTools.Meetings.WpfClient.Automapper
 {
     class MeetingProfile:Profile
     {
-        public MeetingProfile()
-        {
-            CreateMap<ProductivityTools.Meetings.CoreObjects.Meeting, ProductivityTools.Meetings.WpfClient.MeetingVM>();
-        }
+        //public MeetingProfile()
+        //{
+        //    CreateMap<ProductivityTools.Meetings.CoreObjects.Meeting, ProductivityTools.Meetings.WpfClient.MeetingVM>();
+        //}
     }
 }
