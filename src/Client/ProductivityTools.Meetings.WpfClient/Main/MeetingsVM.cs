@@ -1,5 +1,6 @@
 ﻿using ProductivityTools.Meetings.ClientCaller;
 using ProductivityTools.Meetings.WpfClient.Automapper;
+using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,32 +11,27 @@ namespace ProductivityTools.Meetings.WpfClient
 {
     public class MeetingsVM
     {
-        public ObservableCollection<MeetingVM> Meetings { get; set; }
+        public ObservableCollection<MeetingItemVM> Meetings { get; set; }
 
         public ICommand GetMeetingsCommand { get; }
         
 
         public MeetingsVM()
         {
-            this.Meetings = new ObservableCollection<MeetingVM>();
-
+            this.Meetings = new ObservableCollection<MeetingItemVM>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
-        
-            this.Meetings.Add(new MeetingVM() { Subject = "Title1", Date = DateTime.Now, BeforeNotes = "Before1", DuringNotes = "Notes1", AfterNotes = "" });
-
+            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes="Core", DuringNotes="Core" }));
         }
-
-        
 
         private async void GetMeetings()
         {
             MeetingsClient client = new MeetingsClient();
             var xx = await client.GetMeetings();
-            await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
+           // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
 
             foreach (var item in xx)
             {
-                var meeting = AutoMapperConfiguration.Configuration.Map<ProductivityTools.Meetings.CoreObjects.Meeting, MeetingVM>(item);
+                var meeting = new MeetingItemVM(item);
                 this.Meetings.Add(meeting);
             }
         }
