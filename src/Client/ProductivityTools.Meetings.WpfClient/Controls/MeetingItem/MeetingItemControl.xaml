@@ -22,7 +22,7 @@
             <TextBox Name="MeetingDateControl" Text="Here Date" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
             <TextBox Name="MeetingSubjectControl" Text="Here Title" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
             <Button x:Name="EditMeeting" Content="Edit" Width="30"
-                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MeetingItemControl}}, Path=EditClicked}" ></Button>
+                     Command="{Binding EditMeetingCommand}" ></Button>
             <Button x:Name="SaveMeeting" Content="Save" Width="30"
                      Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MeetingItemControl}}, Path=SaveClicked}" ></Button>
         </StackPanel>
