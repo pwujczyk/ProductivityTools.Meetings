@@ -13,13 +13,12 @@
         </Grid.RowDefinitions>
         <meetingitem:MeetingItemControl 
             
-            Subject="{Binding Subject}" 
-                        Date="{Binding Date}"
-                        BeforeNotes="{Binding BeforeNotes}" 
-                        DuringNotes="{Binding DuringNotes}" 
-                        AfterNotes="{Binding AfterNotes}"
-                        Id="{Binding MeetingId}"
-                        EditClicked="{Binding EditMeetingCommand}"
+            Subject="{Binding Meeting.Subject}" 
+                        Date="{Binding Meeting.Date}"
+                        BeforeNotes="{Binding Meeting.BeforeNotes}" 
+                        DuringNotes="{Binding Meeting.DuringNotes}" 
+                        AfterNotes="{Binding Meeting.AfterNotes}"
+                        Id="{Binding Meeting.MeetingId}"
                         ReadOnly="False"
             ></meetingitem:MeetingItemControl>
     </Grid>

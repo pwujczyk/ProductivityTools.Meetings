@@ -200,39 +200,5 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             control.OnReadOnlyChanged(e);
         }
         #endregion
-
-        #region EditButton
-        private static readonly DependencyProperty EditClickedProperty =
-            DependencyProperty.Register("EditClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
-
-        public ICommand EditClicked
-        {
-            get
-            {
-                return (ICommand)GetValue(EditClickedProperty);
-            }
-            set
-            {
-                SetValue(EditClickedProperty, value);
-            }
-        }
-        #endregion
-
-        #region EditButton
-        private static readonly DependencyProperty SaveClickedProperty =
-            DependencyProperty.Register("SaveClicked", typeof(ICommand), typeof(MeetingItemControl), new PropertyMetadata(null));
-
-        public ICommand SaveClicked
-        {
-            get
-            {
-                return (ICommand)GetValue(SaveClickedProperty);
-            }
-            set
-            {
-                SetValue(SaveClickedProperty, value);
-            }
-        }
-        #endregion
     }
 }
