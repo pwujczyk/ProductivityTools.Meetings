@@ -10,7 +10,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
     public class MeetingItemVM
     {
         public Meeting Meeting { get; set; }
-
         public ICommand EditMeetingCommand { get; }
         public ICommand SaveMeetingCommand { get; }
 
@@ -23,8 +22,8 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         private void EditMeetingClick()
         {
-            EditMeeting editMeetingWindow = new EditMeeting(this);
-            editMeetingWindow.ShowDialog();
+            //EditMeeting editMeetingWindow = new EditMeeting(this);
+            //editMeetingWindow.ShowDialog();
         }
 
         private void SaveMeetingClick()

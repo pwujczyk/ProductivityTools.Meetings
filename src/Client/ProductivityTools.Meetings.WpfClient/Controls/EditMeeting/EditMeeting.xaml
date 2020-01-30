@@ -15,7 +15,7 @@
             
             Subject="{Binding Meeting.Subject}" 
                         Date="{Binding Meeting.Date}"
-                        BeforeNotes="{Binding Meeting.BeforeNotes}" 
+                        BeforeNotes="{Binding BeforeNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                         DuringNotes="{Binding Meeting.DuringNotes}" 
                         AfterNotes="{Binding Meeting.AfterNotes}"
                         Id="{Binding Meeting.MeetingId}"

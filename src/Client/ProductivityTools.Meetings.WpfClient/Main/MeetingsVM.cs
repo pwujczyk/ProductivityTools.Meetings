@@ -20,7 +20,8 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
-            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes="Core", DuringNotes="Core" }));
+            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes="Core", DuringNotes="Core", Subject="fdsa" }));
+            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
         }
 
         private async void GetMeetings()

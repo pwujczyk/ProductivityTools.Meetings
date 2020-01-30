@@ -18,16 +18,9 @@ namespace ProductivityTools.Meetings.WpfClient
     /// </summary>
     public partial class EditMeeting : Window
     {
-        MeetingItemVM meeting;
         public EditMeeting()
         {
             InitializeComponent();
-        }
-
-        public EditMeeting(MeetingItemVM meeting) : this()
-        {
-            this.meeting = meeting;
-            this.DataContext = this.meeting;
         }
     }
 }
