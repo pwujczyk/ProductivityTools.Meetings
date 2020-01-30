@@ -7,7 +7,7 @@
              xmlns:notes="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.Notes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MeetingItemControl}}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
@@ -17,18 +17,16 @@
         </Grid.RowDefinitions>
         <Separator Grid.Row="0"></Separator>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBox Name="MeetingIdControl" Text="HereId" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
-            <TextBox Name="MeetingDateControl" Text="Here Date" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
-            <TextBox Name="MeetingSubjectControl" Text="Here Title" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
-            <Button x:Name="EditMeeting" Content="Edit" Width="30"
-                     Command="{Binding EditMeetingCommand}" ></Button>
-            <Button x:Name="SaveMeeting" Content="Save" Width="30"
-                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MeetingItemControl}}, Path=SaveClicked}" ></Button>
+        <StackPanel   Orientation="Horizontal" Grid.Row="1">
+            <TextBox Name="MeetingIdControl" HorizontalAlignment="Left" Text="{Binding Id}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
+            <TextBox Name="MeetingDateControl" HorizontalAlignment="Left" Text="{Binding Date}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
+            <TextBox Name="MeetingSubjectControl" HorizontalAlignment="Left" Text="{Binding Subject}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
+            <Button x:Name="EditMeeting" Content="Edit" Width="30" Command="{Binding Edit}" ></Button>
+            <Button x:Name="SaveMeeting" Content="Save" Width="30" Command="{Binding Save}" ></Button>
         </StackPanel>
 
-        <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="Before meeting text"></notes:NotesControl>
-        <notes:NotesControl x:Name="DuringNotesControl" Grid.Row="3" Label="During Meeting" Text="During meeting text"></notes:NotesControl>
-        <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="4" Label="After meeting" Text="After meeting text"></notes:NotesControl>
+        <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="{Binding BeforeNotes}"></notes:NotesControl>
+        <notes:NotesControl x:Name="DuringNotesControl" Grid.Row="3" Label="During Meeting" Text="{Binding DuringNotes}"></notes:NotesControl>
+        <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="4" Label="After meeting" Text="{Binding AfterNotes}"></notes:NotesControl>
     </Grid>
 </UserControl>
