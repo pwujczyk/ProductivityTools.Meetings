@@ -1,4 +1,4 @@
-﻿<Window x:Class="ProductivityTools.Meetings.WpfClient.EditMeeting"
+﻿<Window x:Class="ProductivityTools.Meetings.WpfClient.Controls.EditMeeting"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,14 +12,11 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <meetingitem:MeetingItemControl 
-            
-            Subject="{Binding Meeting.Subject}" 
-                        Date="{Binding Meeting.Date}"
-                        BeforeNotes="{Binding BeforeNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                        DuringNotes="{Binding Meeting.DuringNotes}" 
-                        AfterNotes="{Binding Meeting.AfterNotes}"
-                        Id="{Binding Meeting.MeetingId}"
-                        ReadOnly="False"
-            ></meetingitem:MeetingItemControl>
+             Subject="{Binding Meeting.Subject, Mode=TwoWay}" 
+             Date="{Binding Meeting.Date}"
+             BeforeNotes="{Binding GG, Mode=TwoWay}" 
+             Id="{Binding Meeting.MeetingId}"
+             Save="{Binding SaveMeetingCommand}"
+             ReadOnly="False"/>
     </Grid>
 </Window>

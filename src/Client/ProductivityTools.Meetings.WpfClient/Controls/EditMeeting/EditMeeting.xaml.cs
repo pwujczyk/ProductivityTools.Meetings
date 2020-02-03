@@ -1,4 +1,5 @@
-﻿using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
+﻿using ProductivityTools.Meetings.CoreObjects;
+using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProductivityTools.Meetings.WpfClient
+namespace ProductivityTools.Meetings.WpfClient.Controls
 {
     /// <summary>
     /// Interaction logic for EditMeeting.xaml
@@ -21,6 +22,11 @@ namespace ProductivityTools.Meetings.WpfClient
         public EditMeeting()
         {
             InitializeComponent();
+        }
+
+        public EditMeeting(Meeting meeting) : this()
+        {
+            this.DataContext = new EditMeetingVM(meeting);
         }
     }
 }

@@ -30,7 +30,8 @@
                         DuringNotes="{Binding Meeting.DuringNotes}" 
                         AfterNotes="{Binding Meeting.AfterNotes}"
                         Id="{Binding Meeting.MeetingId}"
-                            Save="{Binding SaveMeetingCommand}"
+                        Save="{Binding SaveMeetingCommand}"
+                        Edit="{Binding EditMeetingCommand}"
                         ReadOnly="True"
                         >
                         </meetingitem:MeetingItemControl >

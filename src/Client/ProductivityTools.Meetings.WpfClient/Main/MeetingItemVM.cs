@@ -22,8 +22,8 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         private void EditMeetingClick()
         {
-            //EditMeeting editMeetingWindow = new EditMeeting(this);
-            //editMeetingWindow.ShowDialog();
+            EditMeeting editMeetingWindow = new EditMeeting(Meeting);
+            editMeetingWindow.ShowDialog();
         }
 
         private void SaveMeetingClick()
