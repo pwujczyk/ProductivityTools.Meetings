@@ -1,4 +1,4 @@
-﻿using ProductivityTools.Meetings.CoreObjects;
+﻿    using ProductivityTools.Meetings.CoreObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +11,14 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
     {
         public Meeting Meeting { get; set; }
         public ICommand EditMeetingCommand { get; }
-        public ICommand SaveMeetingCommand { get; }
-
+        public ICommand SaveMeetingCommand { get; } 
+        
+        public string GG { get; set; }
+        
         public MeetingItemVM(Meeting meeting)
         {
             this.Meeting = meeting;
+            this.Meeting.BeforeNotes = "Before notes pawel";
             EditMeetingCommand = new CommandHandler(EditMeetingClick, () => true);
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
         }
