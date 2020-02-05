@@ -7,7 +7,8 @@
              xmlns:notes="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.Notes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MeetingItemControl}}}">
+    <Grid 
+        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:MeetingItemControl}}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
@@ -25,11 +26,10 @@
             <Button x:Name="SaveMeeting" Content="Save" Width="30" Command="{Binding Save}" ></Button>
         </StackPanel>
 
-        <notes:NotesControl 
-           
+        <notes:NotesControl
             x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" 
             Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=notes:NotesControl}}"></notes:NotesControl>
 
-        <TextBox Text="{Binding BeforeNotes}"></TextBox>
+        <TextBox Text="{Binding BeforeNotes, Mode=TwoWay}"></TextBox>
     </Grid>
 </UserControl>
