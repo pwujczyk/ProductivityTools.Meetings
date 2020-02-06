@@ -28,7 +28,7 @@
 
         <notes:NotesControl
             x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" 
-            Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=notes:NotesControl}}"></notes:NotesControl>
+            Text="{Binding BeforeNotes}"></notes:NotesControl>
 
         <TextBox Text="{Binding BeforeNotes, Mode=TwoWay}"></TextBox>
     </Grid>
