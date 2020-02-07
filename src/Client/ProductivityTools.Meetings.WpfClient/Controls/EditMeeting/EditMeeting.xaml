@@ -14,7 +14,9 @@
         <meetingitem:MeetingItemControl 
              Subject="{Binding Meeting.Subject, Mode=TwoWay}" 
              Date="{Binding Meeting.Date}"
-             BeforeNotes="{Binding GG, Mode=TwoWay}" 
+             BeforeNotes="{Binding Meeting.BeforeNotes, Mode=TwoWay}" 
+             DuringNotes="{Binding Meeting.DuringNotes, Mode=TwoWay}" 
+             AfterNotes="{Binding Meeting.AfterNotes, Mode=TwoWay}"
              Id="{Binding Meeting.MeetingId}"
              Save="{Binding SaveMeetingCommand}"
              ReadOnly="False"/>

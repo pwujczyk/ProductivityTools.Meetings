@@ -12,13 +12,9 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
         public Meeting Meeting { get; set; }
         public ICommand SaveMeetingCommand { get; }
 
-        public string GG { get; set; }
-
-
         public EditMeetingVM(Meeting meetingItemVM)
         {
             this.Meeting = meetingItemVM;
-            this.GG = "GG";
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
         }
 
