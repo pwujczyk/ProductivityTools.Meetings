@@ -53,22 +53,30 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.Notes
         #endregion
 
         #region Text
-        public static readonly DependencyProperty SetTextProperty = DependencyProperty.Register("Text", typeof(string), typeof(NotesControl));
+        public static readonly DependencyProperty SetTextProperty = DependencyProperty.Register("Text", typeof(string), typeof(NotesControl), new PropertyMetadata("", OnSetTextChanged));
 
         public string Text
         {
             get { return (string)GetValue(SetTextProperty); }
-            set
+            set { SetValue(SetTextProperty, value); }
+        }
+
+        private static void OnSetTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NotesControl notesControl = d as NotesControl;
+            notesControl.OnSetTextChanged(e);
+        }
+
+        private void OnSetTextChanged(DependencyPropertyChangedEventArgs e)
+        {
+            Notes.Text = e.NewValue?.ToString();
+            if (string.IsNullOrWhiteSpace(Notes.Text) && this.NotesVisibility == NotesVisibility.CollapsedWhenEmpty)
             {
-                SetValue(SetTextProperty, value);
-                //if (string.IsNullOrWhiteSpace(value) && this.NotesVisibility==NotesVisibility.CollapsedWhenEmpty)
-                //{
-                //    this.Visibility = Visibility.Collapsed;
-                //}
-                //else
-                //{
-                //    this.Visibility = Visibility.Visible;
-                //}
+                this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.Visibility = Visibility.Visible;
             }
         }
 

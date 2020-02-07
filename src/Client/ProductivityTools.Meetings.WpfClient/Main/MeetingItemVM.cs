@@ -18,7 +18,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         public MeetingItemVM(Meeting meeting)
         {
             this.Meeting = meeting;
-            this.Meeting.BeforeNotes = "Before notes pawel";
             EditMeetingCommand = new CommandHandler(EditMeetingClick, () => true);
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
         }

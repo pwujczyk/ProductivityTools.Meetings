@@ -156,9 +156,9 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         {
             var @readonly = (bool)e.NewValue;
             NotesVisibility visibility = @readonly ? NotesVisibility.CollapsedWhenEmpty : NotesVisibility.AlwaysVisible;
-            //this.AfterNotesControl.NotesVisibility =
-           //this.BeforeNotesControl.NotesVisibility =
-           // this.DuringNotesControl.NotesVisibility = visibility;
+            this.AfterNotesControl.NotesVisibility =
+            this.BeforeNotesControl.NotesVisibility =
+            this.DuringNotesControl.NotesVisibility = visibility;
             this.SaveMeeting.Visibility = @readonly ? Visibility.Hidden : Visibility.Visible;
             this.EditMeeting.Visibility = !@readonly ? Visibility.Hidden : Visibility.Visible;
         }

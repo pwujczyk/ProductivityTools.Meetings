@@ -29,6 +29,6 @@
         <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="{Binding BeforeNotes, Mode=TwoWay}"/>
         <notes:NotesControl x:Name="DuringNotesControl" Grid.Row="3" Label="During Meeting" Text="{Binding DuringNotes, Mode=TwoWay}"/>
         <notes:NotesControl x:Name="AfterNotesControl" Grid.Row="4" Label="After meeting" Text="{Binding AfterNotes, Mode=TwoWay}"/>
-        <TextBox Text="{Binding BeforeNotes, Mode=TwoWay}"></TextBox>
+        <!--<TextBox Text="{Binding BeforeNotes, Mode=TwoWay}"></TextBox>-->
     </Grid>
 </UserControl>
