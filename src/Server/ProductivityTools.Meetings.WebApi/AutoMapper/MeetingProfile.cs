@@ -10,7 +10,8 @@ namespace ProductivityTools.Meetings.WebApi.AutoMapper
     {
         public MeetingProfile()
         {
-            CreateMap<ProductivityTools.Meetings.Database.Objects.Meeting, ProductivityTools.Meetings.CoreObjects.Meeting>();
+            CreateMap<ProductivityTools.Meetings.Database.Objects.Meeting, ProductivityTools.Meetings.CoreObjects.Meeting>()
+                .ReverseMap();
         }
     }
 }
