@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using ProductivityTools.Meetings.WpfClient;
+using ProductivityTools.Meetings.ClientCaller;
 
 namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 {
@@ -28,9 +29,10 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             editMeetingWindow.ShowDialog();
         }
 
-        private void SaveMeetingClick()
+        private async void SaveMeetingClick()
         {
-
+            MeetingsClient client = new MeetingsClient();
+            await client.SaveMeeting(this.Meeting);
         }
     }
 }
