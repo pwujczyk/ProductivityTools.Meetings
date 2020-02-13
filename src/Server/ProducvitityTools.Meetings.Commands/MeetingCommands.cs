@@ -15,11 +15,33 @@ namespace ProducvitityTools.Meetings.Commands
             this.MeetingContext = context;
         }
 
-        void IMeetingCommands.Save(Meeting meeting)
-        {
+        void IMeetingCommands.Update(Meeting meeting)
+        {//pw: not used
+
             MeetingContext.Meeting.Attach(meeting);
             MeetingContext.Entry(meeting).State = EntityState.Modified;
 
+            var ChangeTracker = MeetingContext.ChangeTracker;
+
+            var addedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Added).ToList();
+            var modifiedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Modified).ToList();
+            var deletedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted).ToList();
+
+
+            MeetingContext.SaveChanges();
+        }
+
+        void IMeetingCommands.Save(Meeting meeting)
+        {
+            if (meeting.MeetingId == null)
+            {
+                MeetingContext.Meeting.Add(meeting);
+            }
+            else
+            {
+                MeetingContext.Meeting.Attach(meeting);
+                MeetingContext.Entry(meeting).State = EntityState.Modified;
+            }
             var ChangeTracker = MeetingContext.ChangeTracker;
 
             var addedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Added).ToList();

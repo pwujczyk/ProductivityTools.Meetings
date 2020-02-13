@@ -12,7 +12,8 @@
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Command="{Binding GetMeetingsCommand}"></Button>
+        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
+        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="100px,0px,0px,0px" Command="{Binding NewMeetingCommand}" Content="New"></Button>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>

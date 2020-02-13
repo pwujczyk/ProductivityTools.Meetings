@@ -1,4 +1,5 @@
-﻿using ProductivityTools.Meetings.CoreObjects;
+﻿using ProductivityTools.Meetings.ClientCaller;
+using ProductivityTools.Meetings.CoreObjects;
 using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,16 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
         public Meeting Meeting { get; set; }
         public ICommand SaveMeetingCommand { get; }
 
-        public EditMeetingVM(Meeting meetingItemVM)
+        public EditMeetingVM(Meeting meeting)
         {
-            this.Meeting = meetingItemVM;
+            this.Meeting = meeting;
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
         }
 
-        private void SaveMeetingClick()
+        private async void SaveMeetingClick()
         {
-           // throw new NotImplementedException();
+            MeetingsClient client = new MeetingsClient();
+            await client.SaveMeeting(this.Meeting);
         }
     }
 }

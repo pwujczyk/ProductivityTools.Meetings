@@ -1,5 +1,6 @@
 ﻿using ProductivityTools.Meetings.ClientCaller;
 using ProductivityTools.Meetings.WpfClient.Automapper;
+using ProductivityTools.Meetings.WpfClient.Controls;
 using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,15 @@ namespace ProductivityTools.Meetings.WpfClient
         public ObservableCollection<MeetingItemVM> Meetings { get; set; }
 
         public ICommand GetMeetingsCommand { get; }
-        
+        public ICommand NewMeetingCommand { get; }
+
 
         public MeetingsVM()
         {
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
-            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes="Core", DuringNotes="Core", Subject="fdsa" }));
+            NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
+            this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
         }
 
@@ -28,13 +31,23 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             MeetingsClient client = new MeetingsClient();
             var xx = await client.GetMeetings();
-           // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
-
+            // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
+            this.Meetings.Clear();
             foreach (var item in xx)
             {
                 var meeting = new MeetingItemVM(item);
                 this.Meetings.Add(meeting);
             }
+        }
+
+        private void NewMeeting()
+        {
+            var meeting = new CoreObjects.Meeting();
+            var meetingvm = new MeetingItemVM(meeting);
+            this.Meetings.Add(meetingvm);
+            EditMeeting edit = new EditMeeting(meeting);
+            edit.Show();
+
         }
     }
 }
