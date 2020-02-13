@@ -12,7 +12,7 @@ namespace ProductivityTools.Meetings.ClientCaller
         public MeetingsClient()
         {
             this.HttpPostClient = new SimpleHttpPostClient.HttpPostClient();
-            this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");
+            this.HttpPostClient.SetBaseUrl("https://localhost:443/api");
             this.HttpPostClient.EnableLogging();
         }
 
@@ -20,6 +20,11 @@ namespace ProductivityTools.Meetings.ClientCaller
         {
             var r= this.HttpPostClient.Post<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName);
             return await r;
+        }
+
+        public async Task UpdateMeeting(Meeting meeting)
+        {
+            await this.HttpPostClient.Post<Meeting>(Consts.MeetingControllerName, Consts.UpdateMeetingName, meeting);
         }
 
         public async Task SaveMeeting(Meeting meeting)

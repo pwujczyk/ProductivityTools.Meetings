@@ -43,10 +43,19 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
 
         [HttpPost]
         [Route(Consts.AddMeetingName)]
+        //add validation
         public void Save(Meeting meeting)
         {
             Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);
             MeetingCommands.Save(dbMeeting);
+        }
+
+        [HttpPost]
+        [Route(Consts.UpdateMeetingName)]
+        public void Update(Meeting meeting)
+        {
+            Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);
+            MeetingCommands.Update(dbMeeting);
         }
     }
 }

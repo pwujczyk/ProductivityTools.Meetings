@@ -8,5 +8,6 @@ namespace ProducvitityTools.Meetings.Commands
     public interface IMeetingCommands
     {
         void Save(Meeting meeting);
+        void Update(Meeting meeting);
     }
 }

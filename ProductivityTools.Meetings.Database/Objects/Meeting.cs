@@ -6,7 +6,7 @@ namespace ProductivityTools.Meetings.Database.Objects
 {
     public class Meeting
     {
-        public int MeetingId { get; set; }
+        public int? MeetingId { get; set; }
         public DateTime Date { get; set; }
         public string Subject { get; set; }
         public string BeforeNotes { get; set; }
