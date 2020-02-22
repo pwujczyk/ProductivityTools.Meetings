@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\ProductivityTools.Meetings.CoreObjects\ProductivityTools.Meetings.CoreObjects.csproj" />
+    <ProjectReference Include="..\ProductivityTools.Meetings.Database\ProductivityTools.Meetings.Database.csproj" />
     <ProjectReference Include="..\ProducvitityTools.Meetings.Commands\ProducvitityTools.Meetings.Commands.csproj" />
     <ProjectReference Include="..\ProducvitityTools.Meetings.Queries\ProducvitityTools.Meetings.Queries.csproj" />
   </ItemGroup>

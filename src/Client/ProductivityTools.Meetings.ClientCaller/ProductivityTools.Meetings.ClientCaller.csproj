@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Common\ProductivityTools.Meetings.CoreObjects\ProductivityTools.Meetings.CoreObjects.csproj" />
+    <ProjectReference Include="..\..\Common\ProductivityTools.Meetings.CoreObjects\ProductivityTools.Meetings.CoreObjects.csproj" />
   </ItemGroup>
 
 </Project>
