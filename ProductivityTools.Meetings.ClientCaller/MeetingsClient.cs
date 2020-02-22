@@ -12,7 +12,10 @@ namespace ProductivityTools.Meetings.ClientCaller
         public MeetingsClient()
         {
             this.HttpPostClient = new SimpleHttpPostClient.HttpPostClient();
-            this.HttpPostClient.SetBaseUrl("https://localhost:443/api");
+            this.HttpPostClient.SetBaseUrl("http://localhost:101/api");
+            //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
+            //this.HttpPostClient.SetBaseUrl("http://productivitytools.tech:8081/api");
+
             this.HttpPostClient.EnableLogging();
         }
 
