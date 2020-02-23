@@ -46,6 +46,17 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "weatherforecast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
