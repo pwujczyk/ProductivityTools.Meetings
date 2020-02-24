@@ -41,6 +41,7 @@ namespace ProductivityTools.Meetings.DatabaseMigrations
                     .ScanIn(typeof(CreateMeetingsTable).Assembly).For.Migrations())
                 // Enable logging to console in the FluentMigrator way
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
+                
                 // Build the service provider
                 .BuildServiceProvider(false);
         }

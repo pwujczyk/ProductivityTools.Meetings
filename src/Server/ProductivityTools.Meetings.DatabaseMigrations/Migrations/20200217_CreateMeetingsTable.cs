@@ -15,7 +15,10 @@ namespace ProductivityTools.Meetings.DatabaseMigrations.Migrations
 
         public override void Up()
         {
-            Create.Table("Meetings")
+            Create.Schema("mt");
+
+            Create.Table("Meeting")
+                .InSchema("mt")
                 .WithColumn("MeetingId").AsInt32().Identity().PrimaryKey()
                 .WithColumn("Date").AsDateTime().NotNullable()
                 .WithColumn("Subject").AsString(200).NotNullable()
