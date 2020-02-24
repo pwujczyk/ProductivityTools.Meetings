@@ -43,7 +43,7 @@ namespace ProductivityTools.Meetings.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("tm");
+            modelBuilder.HasDefaultSchema("mt");
             modelBuilder.Entity<Meeting>().HasKey(x => x.MeetingId);
             base.OnModelCreating(modelBuilder);
         }
