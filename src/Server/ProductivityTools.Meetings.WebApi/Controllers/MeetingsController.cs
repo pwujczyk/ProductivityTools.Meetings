@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using ProductivityTools.Meetings.CoreObjects;
 using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
@@ -17,12 +18,14 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         private readonly IMapper mapper;
         IMeetingQueries MeetingQueries;
         IMeetingCommands MeetingCommands;
+        private readonly IConfiguration configuration;
 
-        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper)
+        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper, IConfiguration configuration)
         {
             this.MeetingQueries = meetingQueries;
             this.mapper = mapper;
             this.MeetingCommands = meetingCommands;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -34,8 +37,9 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
 
         [HttpPost]
         [Route(Consts.ListName)]
-        public List<Meeting> Get()
+        public List<Meeting> Get(string name)
         {
+            var s = configuration.GetValue<string>("Secret");
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
             return result;
