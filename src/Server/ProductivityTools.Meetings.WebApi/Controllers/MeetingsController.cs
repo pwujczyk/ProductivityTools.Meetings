@@ -37,9 +37,17 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
 
         [HttpPost]
         [Route(Consts.ListName)]
-        public List<Meeting> Get(string name)
+        public List<Meeting> Get(object name)
         {
-            var s = configuration.GetValue<string>("Secret");
+            var remotesecret = name.ToString();
+            string s = Environment.GetEnvironmentVariable("MeetingsSecret",EnvironmentVariableTarget.Machine);
+            if (!string.IsNullOrEmpty(s))
+            {
+                if (remotesecret!=s)
+                {
+                    throw new Exception("Wrong secret");
+                }
+            }
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
             return result;

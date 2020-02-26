@@ -16,6 +16,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
+        public string Secret { get; set; }
 
 
         public MeetingsVM()
@@ -29,7 +30,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private async void GetMeetings()
         {
-            MeetingsClient client = new MeetingsClient();
+            MeetingsClient client = new MeetingsClient(this.Secret);
             var xx = await client.GetMeetings();
             // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
             this.Meetings.Clear();

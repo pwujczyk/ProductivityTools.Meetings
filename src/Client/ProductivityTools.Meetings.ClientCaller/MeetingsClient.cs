@@ -8,12 +8,14 @@ namespace ProductivityTools.Meetings.ClientCaller
     public class MeetingsClient
     {
         SimpleHttpPostClient.HttpPostClient HttpPostClient;
+        string Secret;
 
-        public MeetingsClient()
+        public MeetingsClient(string secret)
         {
+            this.Secret = secret;
             this.HttpPostClient = new SimpleHttpPostClient.HttpPostClient();
             this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
-       
+
             //this.HttpPostClient.SetBaseUrl("http://localhost:101/api");//iis
             //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
             //this.HttpPostClient.SetBaseUrl("http://productivitytools.tech:8081/api");
@@ -23,7 +25,7 @@ namespace ProductivityTools.Meetings.ClientCaller
 
         public async Task<List<Meeting>> GetMeetings()
         {
-            var r= this.HttpPostClient.Post<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName,new { name = "Fdsa" });
+            var r = this.HttpPostClient.Post<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName, Secret ?? "");
             return await r;
         }
 
