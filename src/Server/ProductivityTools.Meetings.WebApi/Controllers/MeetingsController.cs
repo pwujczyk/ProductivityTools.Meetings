@@ -58,14 +58,6 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return $"Welcome {name.ToString()} secret checked= {s}";
         }
 
-        [HttpPost]
-        [Route("List4")]
-        public string Get4(object name)
-        {
-            var remotesecret = name.ToString();
-            string s = Environment.GetEnvironmentVariable("MeetingsSecret", EnvironmentVariableTarget.Machine);
-            return $"Welcome {name.ToString()} secret checked= {s}";
-        }
 
         [HttpPost]
         [Route("List5")]
@@ -73,11 +65,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         {
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
-            return result.Take(3).ToList();
+            return result.Take(1).ToList();
         }
-
-
-
 
         [HttpPost]
         [Route(Consts.ListName)]
@@ -94,7 +83,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             }
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
-            return result.Take(9).ToList();
+            return result.ToList();
         }
 
         [HttpPost]
