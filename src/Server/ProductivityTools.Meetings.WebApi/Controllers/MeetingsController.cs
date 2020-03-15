@@ -94,7 +94,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             }
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
-            return result.Take(5).ToList();
+            return result.Take(8).ToList();
         }
 
         [HttpPost]
