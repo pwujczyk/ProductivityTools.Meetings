@@ -43,6 +43,22 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("List3")]
+        public string Get3(object name)
+        {
+            var remotesecret = name.ToString();
+            string s = Environment.GetEnvironmentVariable("MeetingsSecret", EnvironmentVariableTarget.Machine);
+            if (!string.IsNullOrEmpty(s))
+            {
+                if (remotesecret != s)
+                {
+                    throw new Exception("Wrong secret");
+                }
+            }
+            return $"Welcome {name.ToString()} secret checked= {s}";
+        }
+
+        [HttpPost]
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
