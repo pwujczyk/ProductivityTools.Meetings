@@ -59,6 +59,17 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("List4")]
+        public string Get4(object name)
+        {
+            var remotesecret = name.ToString();
+            string s = Environment.GetEnvironmentVariable("MeetingsSecret", EnvironmentVariableTarget.Machine);
+            return $"Welcome {name.ToString()} secret checked= {s}";
+        }
+
+
+
+        [HttpPost]
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
