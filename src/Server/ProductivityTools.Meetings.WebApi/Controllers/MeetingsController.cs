@@ -36,10 +36,10 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Meetings2")]
+        [Route("List2")]
         public string Get2(object name)
         {
-            return name.ToString();
+            return $"Welcome {name.ToString()}";
         }
 
         [HttpPost]
