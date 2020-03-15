@@ -36,6 +36,13 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route("Meetings2")]
+        public string Get2(object name)
+        {
+            return name.ToString();
+        }
+
+        [HttpPost]
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
