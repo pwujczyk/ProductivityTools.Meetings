@@ -67,6 +67,16 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return $"Welcome {name.ToString()} secret checked= {s}";
         }
 
+        [HttpPost]
+        [Route("List5")]
+        public List<Meeting> Get5(object name)
+        {
+            var partresult = MeetingQueries.GetMeetings();
+            List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
+            return result.Skip(2).Take(2).ToList();
+        }
+
+
 
 
         [HttpPost]
