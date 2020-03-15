@@ -6,6 +6,7 @@ using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -68,10 +69,20 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             return result.Take(1).ToList();
         }
 
+        private void SaveToLog(string message)
+        {
+            using (EventLog eventLog = new EventLog("Application"))
+            {
+                eventLog.Source = "Application";
+                eventLog.WriteEntry(message, EventLogEntryType.Information, 101, 1);
+            }
+        }
+
         [HttpPost]
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
+            SaveToLog("Request started");
             var remotesecret = name.ToString();
             string s = Environment.GetEnvironmentVariable("MeetingsSecret",EnvironmentVariableTarget.Machine);
             if (!string.IsNullOrEmpty(s))
@@ -83,6 +94,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             }
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
+            SaveToLog("Meetings mapped");
             return result.ToList();
         }
 
