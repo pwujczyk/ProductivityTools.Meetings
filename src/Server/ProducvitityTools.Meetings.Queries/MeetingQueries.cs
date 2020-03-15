@@ -20,5 +20,11 @@ namespace ProducvitityTools.Meetings.Queries
             var result = this.MeetingContext.Meeting.OrderByDescending(x=>x.Date).ToList();
             return result;
         }
+
+        public Meeting GetMeeting(int id)
+        {
+            var result = this.MeetingContext.Meeting.SingleOrDefault(x => x.MeetingId == id);
+            return result;
+        }
     }
 }

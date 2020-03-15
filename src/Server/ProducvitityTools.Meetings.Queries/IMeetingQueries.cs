@@ -6,5 +6,6 @@ namespace ProducvitityTools.Meetings.Queries
     public interface IMeetingQueries
     {
         List<Meeting> GetMeetings();
+        Meeting GetMeeting(int id);
     }
 }

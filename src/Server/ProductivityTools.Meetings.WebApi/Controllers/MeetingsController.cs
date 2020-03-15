@@ -99,6 +99,27 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
+        [Route(Consts.MeetingName)]
+        public Meeting Get(MeetingId meetingId)
+        {
+            SaveToLog("Request started");
+            var remotesecret = meetingId.Secret.ToString();
+            string s = Environment.GetEnvironmentVariable("MeetingsSecret", EnvironmentVariableTarget.Machine);
+            if (!string.IsNullOrEmpty(s))
+            {
+                if (remotesecret != s)
+                {
+                    throw new Exception("Wrong secret");
+                }
+            }
+            var partresult = MeetingQueries.GetMeeting(meetingId.Id.Value);
+            Meeting result = this.mapper.Map<Meeting>(partresult);
+            SaveToLog("Meetings mapped");
+            return result;
+        }
+
+
+        [HttpPost]
         [Route(Consts.AddMeetingName)]
         //add validation
         public void Save(Meeting meeting)
