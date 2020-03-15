@@ -95,7 +95,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
             SaveToLog("Meetings mapped");
-            return result.ToList();
+            return result;
         }
 
         [HttpPost]
