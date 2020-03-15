@@ -73,7 +73,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         {
             var partresult = MeetingQueries.GetMeetings();
             List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
-            return result.Skip(2).Take(2).ToList();
+            return result.Take(2).ToList();
         }
 
 
