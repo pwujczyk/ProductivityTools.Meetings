@@ -19,8 +19,11 @@
         <Separator Grid.Row="0"></Separator>
 
         <StackPanel   Orientation="Horizontal" Grid.Row="1">
-            <TextBox Name="MeetingIdControl" HorizontalAlignment="Left" Text="{Binding Id}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
-            <TextBox Name="MeetingDateControl" HorizontalAlignment="Left" Text="{Binding Date}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
+            <TextBox Name="MeetingIdControl" HorizontalAlignment="Left" Text="{Binding Id, StringFormat={}[{0}]}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"/>
+            <TextBox Name="MeetingDateControl" HorizontalAlignment="Left"  Text="{Binding Date, Mode=TwoWay,StringFormat=yyy-MM-dd hh:mm}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold" ></TextBox>
+            <Popup IsOpen="False">
+                <Calendar SelectedDate="{Binding Date}" />
+            </Popup>
             <TextBox Name="MeetingSubjectControl" HorizontalAlignment="Left" Text="{Binding Subject}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
             <Button x:Name="EditMeeting" Content="Edit" Width="30" Command="{Binding Edit}" ></Button>
             <Button x:Name="SaveMeeting" Content="Save" Width="30" Command="{Binding Save}" ></Button>
