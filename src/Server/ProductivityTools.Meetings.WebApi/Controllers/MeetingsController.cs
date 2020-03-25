@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProductivityTools.Meetings.WebApi.Controllers
@@ -29,11 +30,12 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Date")]
-        public string GetDate()
+        public object GetDate()
         {
-            return DateTime.Now.ToString();
+            Thread.Sleep(2000);
+            return DateTime.Now;
         }
 
         [HttpPost]
