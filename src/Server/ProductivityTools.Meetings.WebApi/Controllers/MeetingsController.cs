@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ProductivityTools.Meetings.CoreObjects;
@@ -29,11 +30,11 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Date")]
-        public string GetDate()
+        public object GetDate()
         {
-            return DateTime.Now.ToString();
+            return DateTime.Now;
         }
 
         [HttpPost]
@@ -71,14 +72,15 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
 
         private void SaveToLog(string message)
         {
-            using (EventLog eventLog = new EventLog("Application"))
-            {
-                eventLog.Source = "Application";
-                eventLog.WriteEntry(message, EventLogEntryType.Information, 101, 1);
-            }
+            //using (EventLog eventLog = new EventLog("Application"))
+            //{
+            //    eventLog.Source = "Application";
+            //    eventLog.WriteEntry(message, EventLogEntryType.Information, 101, 1);
+            //}
         }
 
         [HttpPost]
+        [Authorize]
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
