@@ -80,7 +80,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        
         [Route(Consts.ListName)]
         public List<Meeting> Get(object name)
         {
