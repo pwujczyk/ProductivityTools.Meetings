@@ -46,11 +46,13 @@ namespace ProductivityTools.Meetings.WebApi
             {
                 options.Authority = domain;
                 options.Audience = Configuration["Auth0:ApiIdentifier"];
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    NameClaimType = ClaimTypes.NameIdentifier
-                };
+                //options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                //{
+                //    NameClaimType = ClaimTypes.NameIdentifier
+                //};
             });
+
+            services.AddMvc(opt=>opt.EnableEndpointRouting=false);//pw:maybe delete after auth will work
 
             services.AddCors(options =>
             {
@@ -69,19 +71,21 @@ namespace ProductivityTools.Meetings.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);
+            app.UseHttpsRedirection();
+          
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseMvc();//maybe to delete aftera auth will work
+
             // app.UseCors(builder => builder.WithOrigins("http://localhost:3000/").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
            
             
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
         }
     }
 }
