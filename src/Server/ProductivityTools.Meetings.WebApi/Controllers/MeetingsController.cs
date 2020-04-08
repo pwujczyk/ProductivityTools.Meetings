@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using Auth0.AuthenticationApi;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ProductivityTools.Meetings.CoreObjects;
@@ -9,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ProductivityTools.Meetings.WebApi.Controllers
@@ -21,13 +27,15 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         IMeetingQueries MeetingQueries;
         IMeetingCommands MeetingCommands;
         private readonly IConfiguration configuration;
+        private IHttpContextAccessor _httpContextAccessor;
 
-        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper, IConfiguration configuration)
+        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             this.MeetingQueries = meetingQueries;
             this.mapper = mapper;
             this.MeetingCommands = meetingCommands;
             this.configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost]
@@ -82,8 +90,20 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [Route(Consts.ListName)]
-        public List<Meeting> Get(object name)
+        public async Task<List<Meeting>> Get(object name)
         {
+            var xx = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+
+            var apiClient = new AuthenticationApiClient("productivitytools-meeting-dev.eu.auth0.com");
+            var userInfod = await apiClient.GetUserInfoAsync(accessToken);
+
+            var userInfoUrl = "https://www.googleapis.com/oauth2/v1/userinfo";
+            var hc = new HttpClient();
+            hc.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var response = hc.GetAsync(userInfoUrl).Result;
+            dynamic userInfo = response.Content.ReadAsStringAsync().Result;
+
             SaveToLog("Request started");
             var remotesecret = name.ToString();
             string s = Environment.GetEnvironmentVariable("MeetingsSecret",EnvironmentVariableTarget.Machine);
