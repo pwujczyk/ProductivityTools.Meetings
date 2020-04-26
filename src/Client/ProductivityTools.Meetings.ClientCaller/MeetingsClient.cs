@@ -14,6 +14,7 @@ namespace ProductivityTools.Meetings.ClientCaller
         {
             this.Secret = secret;
             this.HttpPostClient = new SimpleHttpPostClient.HttpPostClient();
+            
            // this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
 
             this.HttpPostClient.SetBaseUrl("https://localhost:5001/api");//vs

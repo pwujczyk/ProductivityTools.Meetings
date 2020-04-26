@@ -82,6 +82,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private void DisplayResult(LoginResult loginResult)
         {
+            ClientCredentials.SetCredentials(loginResult.IdentityToken, loginResult.AccessToken);
             //// Display error
             //if (loginResult.IsError)
             //{
