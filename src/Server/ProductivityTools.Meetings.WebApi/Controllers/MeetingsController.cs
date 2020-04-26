@@ -94,9 +94,18 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         {
             var xx = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
+            try
+            {
+                var apiClient = new AuthenticationApiClient("productivitytools-meeting-dev.eu.auth0.com");
+                var userInfod = await apiClient.GetUserInfoAsync(accessToken);
+               
 
-            var apiClient = new AuthenticationApiClient("productivitytools-meeting-dev.eu.auth0.com");
-            var userInfod = await apiClient.GetUserInfoAsync(accessToken);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
             var userInfoUrl = "https://www.googleapis.com/oauth2/v1/userinfo";
             var hc = new HttpClient();
