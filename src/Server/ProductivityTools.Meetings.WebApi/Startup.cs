@@ -40,15 +40,15 @@ namespace ProductivityTools.Meetings.WebApi
             services.ConfigureServicesCommands();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            string domain = $"https://{Configuration["Auth0:domain"]}/";
+           // string domain = $"https://demo.identityserver.io/api/";
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = domain;
-                options.Audience = Configuration["Auth0:ApiIdentifier"];
+                options.Authority = "https://demo.identityserver.io/";
+                options.Audience = "api";
                 //options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 //{
                 //    NameClaimType = ClaimTypes.NameIdentifier

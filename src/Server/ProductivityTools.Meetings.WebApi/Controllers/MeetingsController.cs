@@ -96,8 +96,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
             try
             {
-                var apiClient = new AuthenticationApiClient("productivitytools-meeting-dev.eu.auth0.com");
-                var userInfod = await apiClient.GetUserInfoAsync(accessToken);
+                //var apiClient = new AuthenticationApiClient("productivitytools-meeting-dev.eu.auth0.com");
+                //var userInfod = await apiClient.GetUserInfoAsync(accessToken);
                
 
             }
