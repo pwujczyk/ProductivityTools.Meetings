@@ -17,7 +17,7 @@ pipeline {
         stage('clone') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'develop',
+                git branch: 'master',
                 url: 'https://github.com/pwujczyk/ProductivityTools.Meetings'
             }
         }
