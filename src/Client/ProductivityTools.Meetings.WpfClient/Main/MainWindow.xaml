@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
         xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>

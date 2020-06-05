@@ -1,6 +1,4 @@
-﻿using Auth0.OidcClient;
-using IdentityModel.OidcClient;
-using IdentityModel.OidcClient.Browser;
+﻿using IdentityModel.Client;
 using ProductivityTools.Meetings.ClientCaller;
 using ProductivityTools.Meetings.WpfClient.Automapper;
 using ProductivityTools.Meetings.WpfClient.Controls;
@@ -8,6 +6,7 @@ using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 
@@ -56,61 +55,10 @@ namespace ProductivityTools.Meetings.WpfClient
 
         }
 
-        private Auth0Client client;
         private async void LoginClick()
         {
+          
 
-            string domain = @"productivitytools-meeting-dev.eu.auth0.com";
-            string clientId = "0ygl3UMljGseor6wYLAHlDPWSaoSB6gv";
-
-            client = new Auth0Client(new Auth0ClientOptions
-            {
-                Domain = domain,
-                ClientId = clientId
-            });
-
-            var extraParameters = new Dictionary<string, string>();
-
-            //if (!string.IsNullOrEmpty(connectionNameComboBox.Text))
-            extraParameters.Add("connection", "google-oauth2");
-
-            //if (!string.IsNullOrEmpty(audienceTextBox.Text))
-            //    extraParameters.Add("audience", audienceTextBox.Text);
-
-            DisplayResult(await client.LoginAsync(extraParameters: extraParameters));
-        }
-
-        private void DisplayResult(LoginResult loginResult)
-        {
-            ClientCredentials.SetCredentials(loginResult.IdentityToken, loginResult.AccessToken);
-            //// Display error
-            //if (loginResult.IsError)
-            //{
-            //    resultTextBox.Text = loginResult.Error;
-            //    return;
-            //}
-
-            //logoutButton.Visibility = Visibility.Visible;
-            //loginButton.Visibility = Visibility.Collapsed;
-
-            // Display result
-            StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine("Tokens");
-            sb.AppendLine("------");
-            sb.AppendLine($"id_token: {loginResult.IdentityToken}");
-            sb.AppendLine($"access_token: {loginResult.AccessToken}");
-            sb.AppendLine($"refresh_token: {loginResult.RefreshToken}");
-            sb.AppendLine();
-
-            sb.AppendLine("Claims");
-            sb.AppendLine("------");
-            foreach (var claim in loginResult.User.Claims)
-            {
-                sb.AppendLine($"{claim.Type}: {claim.Value}");
-            }
-
-          //  resultTextBox.Text = sb.ToString();
         }
     }
 }

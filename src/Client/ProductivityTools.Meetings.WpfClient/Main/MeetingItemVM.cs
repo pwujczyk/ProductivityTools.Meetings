@@ -5,7 +5,6 @@ using System.Text;
 using System.Windows.Input;
 using ProductivityTools.Meetings.WpfClient;
 using ProductivityTools.Meetings.ClientCaller;
-using Auth0.OidcClient;
 
 namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 {
