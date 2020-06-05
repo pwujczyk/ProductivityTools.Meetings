@@ -59,7 +59,7 @@ pipeline {
         }
         stage('copyIisFiles') {
             steps {
-                bat('xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\Meetings\\src\\Server\\ProductivityTools.Meetings.WebApi\\bin\\Release\\netcoreapp3.0\\publish" "C:\\Bin\\Meetings\\" /O /X /E /H /K')
+                bat('xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\Meetings\\src\\Server\\ProductivityTools.Meetings.WebApi\\bin\\Release\\netcoreapp3.1\\publish" "C:\\Bin\\Meetings\\" /O /X /E /H /K')
 				                      
             }
         }
