@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
         xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
@@ -14,7 +14,9 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
         <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="100px,0px,0px,0px" Command="{Binding NewMeetingCommand}" Content="New"></Button>
+        
         <TextBox Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="200px,0px,0px,0px" Text="{Binding Secret}"></TextBox>
+        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="300px,0px,0px,0px" Command="{Binding LoginCommand}" Content="Login"></Button>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>

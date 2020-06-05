@@ -13,5 +13,6 @@ namespace ProductivityTools.Meetings.WpfClient
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

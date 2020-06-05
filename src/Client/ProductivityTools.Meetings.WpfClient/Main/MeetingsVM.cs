@@ -1,10 +1,12 @@
-﻿using ProductivityTools.Meetings.ClientCaller;
+﻿using IdentityModel.Client;
+using ProductivityTools.Meetings.ClientCaller;
 using ProductivityTools.Meetings.WpfClient.Automapper;
 using ProductivityTools.Meetings.WpfClient.Controls;
 using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 
@@ -16,6 +18,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
+        public ICommand LoginCommand { get; }
         public string Secret { get; set; }
 
 
@@ -24,6 +27,7 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
             NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
+            LoginCommand = new CommandHandler(LoginClick, () => true);
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
         }
@@ -48,6 +52,12 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Meetings.Add(meetingvm);
             EditMeeting edit = new EditMeeting(meeting);
             edit.Show();
+
+        }
+
+        private async void LoginClick()
+        {
+          
 
         }
     }
