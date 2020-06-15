@@ -25,7 +25,7 @@ namespace ProductivityTools.Meetings.ClientCaller
 
                     var client = new HttpClient();
 
-                    var disco = client.GetDiscoveryDocumentAsync("https://productivitytools.tech:8084/").Result;
+                    var disco = client.GetDiscoveryDocumentAsync("https://identityserver.productivitytools.tech:8084/").Result;
                     if (disco.IsError)
                     {
                         Console.WriteLine(disco.Error);
@@ -76,10 +76,10 @@ namespace ProductivityTools.Meetings.ClientCaller
             
            // this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
 
-            this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
+            //this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
 
             //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
-            // this.HttpPostClient.SetBaseUrl("http://productivitytools.tech:8081/api");
+             this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
             //this.HttpPostClient.SetBaseUrl("http://192.168.1.51:8081/api");
             this.HttpPostClient.HttpClient.SetBearerToken(Token);
 

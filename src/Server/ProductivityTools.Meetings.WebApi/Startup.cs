@@ -47,7 +47,7 @@ namespace ProductivityTools.Meetings.WebApi
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
-                options.Authority = "https://productivitytools.tech:8084/";
+                options.Authority = "https://identityserver.productivitytools.tech:8084/";
                 options.Audience = "ProductivityTools.Meetings.API";
                 //options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 //{

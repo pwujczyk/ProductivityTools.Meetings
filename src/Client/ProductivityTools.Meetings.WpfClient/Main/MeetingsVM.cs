@@ -35,14 +35,24 @@ namespace ProductivityTools.Meetings.WpfClient
         private async void GetMeetings()
         {
             MeetingsClient client = new MeetingsClient(this.Secret);
-            var xx = await client.GetMeetings();
-            // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
-            this.Meetings.Clear();
-            foreach (var item in xx)
+            try
             {
-                var meeting = new MeetingItemVM(item);
-                this.Meetings.Add(meeting);
+                var xx = await client.GetMeetings();
+                // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
+                this.Meetings.Clear();
+                foreach (var item in xx)
+                {
+                    var meeting = new MeetingItemVM(item);
+                    this.Meetings.Add(meeting);
+                }
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+           
         }
 
         private void NewMeeting()
