@@ -11,5 +11,9 @@ namespace ProductivityTools.Meetings.CoreObjects
         public const string MeetingName = "Meeting";
         public const string AddMeetingName = "New";
         public const string UpdateMeetingName = "Update";
+
+
+        public const string TreeControllerName = "Tree";
+        public const string GetControllerName = "Get";
     }
 }

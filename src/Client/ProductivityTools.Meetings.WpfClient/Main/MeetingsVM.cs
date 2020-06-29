@@ -27,7 +27,6 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
             NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
-            LoginCommand = new CommandHandler(LoginClick, () => true);
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
         }
@@ -38,7 +37,7 @@ namespace ProductivityTools.Meetings.WpfClient
             try
             {
                 var xx = await client.GetMeetings();
-                // await client.SaveMeeting(new CoreObjects.Meeting() { AfterNotes = "after" });
+                var tree = await client.GetTree();
                 this.Meetings.Clear();
                 foreach (var item in xx)
                 {
@@ -51,8 +50,6 @@ namespace ProductivityTools.Meetings.WpfClient
 
                 throw ex;
             }
-            
-           
         }
 
         private void NewMeeting()
@@ -62,12 +59,6 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Meetings.Add(meetingvm);
             EditMeeting edit = new EditMeeting(meeting);
             edit.Show();
-
-        }
-
-        private async void LoginClick()
-        {
-          
 
         }
     }

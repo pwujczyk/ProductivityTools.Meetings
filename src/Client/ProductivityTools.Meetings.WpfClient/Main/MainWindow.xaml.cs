@@ -27,10 +27,6 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             InitializeComponent();
             this.DataContext = new MeetingsVM();
-
-            
-
-
         }
     }
 }
