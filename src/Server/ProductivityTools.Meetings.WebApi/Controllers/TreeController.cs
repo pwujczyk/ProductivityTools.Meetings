@@ -18,6 +18,8 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         {
             List<TreeNode> result = new List<TreeNode>();
             result.Add(new TreeNode("EcoVadis"));
+            result[0].Nodes = new List<TreeNode>();
+            result[0].Nodes.Add(new TreeNode("DevSteering"));
             result.Add(new TreeNode("Pawel"));
             return result;
         }

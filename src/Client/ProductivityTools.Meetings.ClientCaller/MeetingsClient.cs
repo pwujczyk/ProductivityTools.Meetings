@@ -102,11 +102,11 @@ namespace ProductivityTools.Meetings.ClientCaller
             await this.HttpPostClient.PostAsync<Meeting>(Consts.MeetingControllerName, Consts.AddMeetingName, meeting);
         }
 
-        public async Task<string> GetTree()
+        public async Task<List<TreeNode>> GetTree()
         {
             var r = await this.HttpPostClient.PostAsync<List<TreeNode>>(Consts.TreeControllerName, Consts.GetControllerName);
             //return r;
-            return string.Empty;
+            return r;
         }
 
     }

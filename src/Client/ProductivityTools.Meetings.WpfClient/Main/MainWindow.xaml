@@ -17,17 +17,12 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TreeView Grid.Row="1" Grid.Column="0" >
-            <TreeViewItem Header="Employee1">
-                <TreeViewItem Header="Jesper"/>
-                <TreeViewItem Header="Aaberg"/>
-                <TreeViewItem Header="12345"/>
-            </TreeViewItem>
-            <TreeViewItem Header="Employee2">
-                <TreeViewItem Header="Dominik"/>
-                <TreeViewItem Header="Paiha"/>
-                <TreeViewItem Header="98765"/>
-            </TreeViewItem>
+        <TreeView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}" >
+            <TreeView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>
+            </TreeView.ItemTemplate>
         </TreeView>
         <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
         <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="100px,0px,0px,0px" Command="{Binding NewMeetingCommand}" Content="New"></Button>

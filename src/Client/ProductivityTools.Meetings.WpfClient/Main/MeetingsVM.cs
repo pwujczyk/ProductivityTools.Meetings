@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using ProductivityTools.Meetings.ClientCaller;
+using ProductivityTools.Meetings.CoreObjects;
 using ProductivityTools.Meetings.WpfClient.Automapper;
 using ProductivityTools.Meetings.WpfClient.Controls;
 using ProductivityTools.Meetings.WpfClient.Controls.MeetingItem;
@@ -15,6 +16,7 @@ namespace ProductivityTools.Meetings.WpfClient
     public class MeetingsVM
     {
         public ObservableCollection<MeetingItemVM> Meetings { get; set; }
+        public ObservableCollection<TreeNode> Tree { get; set; }
 
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
@@ -25,10 +27,13 @@ namespace ProductivityTools.Meetings.WpfClient
         public MeetingsVM()
         {
             this.Meetings = new ObservableCollection<MeetingItemVM>();
+            this.Tree = new ObservableCollection<TreeNode>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
             NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
+            this.Tree.Add(new TreeNode("Pawel"));
+            this.Tree.Add(new TreeNode("Marcin"));
         }
 
         private async void GetMeetings()
@@ -38,6 +43,8 @@ namespace ProductivityTools.Meetings.WpfClient
             {
                 var xx = await client.GetMeetings();
                 var tree = await client.GetTree();
+                this.Tree.Clear();
+                tree.ForEach(x => this.Tree.Add(x));
                 this.Meetings.Clear();
                 foreach (var item in xx)
                 {
