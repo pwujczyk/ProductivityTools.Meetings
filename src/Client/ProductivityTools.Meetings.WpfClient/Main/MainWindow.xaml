@@ -19,9 +19,12 @@
 
         <TreeView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}" >
             <TreeView.ItemTemplate>
-                <DataTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Nodes}">
                     <TextBlock Text="{Binding Name}"></TextBlock>
-                </DataTemplate>
+                </HierarchicalDataTemplate>
+                <!--<DataTemplate>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
+                </DataTemplate>-->
             </TreeView.ItemTemplate>
         </TreeView>
         <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
