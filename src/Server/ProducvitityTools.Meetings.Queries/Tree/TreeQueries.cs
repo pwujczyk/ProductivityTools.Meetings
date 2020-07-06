@@ -22,7 +22,9 @@ namespace ProducvitityTools.Meetings.Queries
 
         public List<TreeNode> GetTree()
         {
-            throw new Exception();
+            var result = new List<TreeNode>();
+            result.Add(new TreeNode { Name = "EcoVadis123" });
+            return result;
             //var result = this.MeetingContext..OrderByDescending(x => x.Date).ToList();
             //return result;
         }
