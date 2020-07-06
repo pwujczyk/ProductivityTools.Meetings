@@ -17,7 +17,7 @@ namespace ProductivityTools.Meetings.Database
         }
 
         public DbSet<Meeting> Meeting { get; set; }
-        public DbSet<Tree> Tree { get; set; }
+        public DbSet<TreeNode> Tree { get; set; }
 
 
         private ILoggerFactory GetLoggerFactory()
@@ -47,7 +47,7 @@ namespace ProductivityTools.Meetings.Database
         {
             modelBuilder.HasDefaultSchema("mt");
             modelBuilder.Entity<Meeting>().HasKey(x => x.MeetingId);
-            modelBuilder.Entity<Tree>().HasKey(x => x.TreeId);
+            modelBuilder.Entity<TreeNode>().ToTable("Tree","mt").HasKey(x => x.TreeId);
            // modelBuilder.Entity<Tree>().HasOne(x => x.Parent).WithMany(x => x.Parent);
 
             base.OnModelCreating(modelBuilder);

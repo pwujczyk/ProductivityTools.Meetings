@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace ProductivityTools.Meetings.WebApi.AutoMapper
+namespace ProductivityTools.Meetings.Services.AutoMapper
 {
     public class TreeProfile : Profile
     {

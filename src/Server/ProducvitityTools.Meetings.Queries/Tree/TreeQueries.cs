@@ -2,16 +2,19 @@
 using ProductivityTools.Meetings.Database.Objects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace ProducvitityTools.Meetings.Queries
 {
     public interface ITreeQueries
     {
-        List<TreeNode> GetTree();
+        TreeNode GetRoot();
+        List<TreeNode> GetTree(int parentId);
     }
 
-    class TreeQueries: ITreeQueries
+    class TreeQueries : ITreeQueries
     {
         MeetingContext MeetingContext;
 
@@ -20,15 +23,18 @@ namespace ProducvitityTools.Meetings.Queries
             this.MeetingContext = context;
         }
 
-        public List<TreeNode> GetTree()
+        public TreeNode GetRoot()
         {
-            var result = new List<TreeNode>();
-            result.Add(new TreeNode { Name = "EcoVadis123" });
-            return result;
-            //var result = this.MeetingContext..OrderByDescending(x => x.Date).ToList();
-            //return result;
+            TreeNode root = this.MeetingContext.Tree.Where(x => x.Name == "Root").First();
+            return root;
         }
 
-      
+        public List<TreeNode> GetTree(int parentId)
+        {
+            var result = this.MeetingContext.Tree.Where(x => x.ParentId == parentId && x.TreeId != x.ParentId).ToList();
+            return result;
+        }
+
+
     }
 }

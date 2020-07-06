@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProductivityTools.Meetings.Services;
 using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 
@@ -36,8 +37,10 @@ namespace ProductivityTools.Meetings.WebApi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllers();
+            services.ConfigureServicesTreeService();
             services.ConfigureServicesQueries();
             services.ConfigureServicesCommands();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
            // string domain = $"https://demo.identityserver.io/api/";

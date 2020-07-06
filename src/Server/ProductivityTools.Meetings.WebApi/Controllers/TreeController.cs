@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductivityTools.Meetings.CoreObjects;
+using ProductivityTools.Meetings.Services;
 using ProducvitityTools.Meetings.Queries;
 
 namespace ProductivityTools.Meetings.WebApi.Controllers
@@ -15,13 +16,11 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
     public class TreeController : ControllerBase
     {
         readonly IMapper Mapper;
-        readonly  ITreeQueries TreeQueries;
+        readonly  ITreeService TreeServices;
 
-        private IHttpContextAccessor _httpContextAccessor;
-
-        public TreeController(ITreeQueries treeQueries, IMapper mapper)
+        public TreeController(ITreeService treeService, IMapper mapper)
         {
-            this.TreeQueries = treeQueries;
+            this.TreeServices = treeService;
             this.Mapper = mapper;
         }
 
@@ -29,13 +28,13 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [Route("Get")]
         public List<TreeNode> GetTree()
         {
-            List<TreeNode> result = new List<TreeNode>();
+         //   List<TreeNode> result = new List<TreeNode>();
             //result.Add(new TreeNode("EcoVadis"));
             //result[0].Nodes = new List<TreeNode>();
             //result[0].Nodes.Add(new TreeNode("DevSteering"));
             //result.Add(new TreeNode("Pawel"));
-            var db = TreeQueries.GetTree();
-            result = Mapper.Map<List<TreeNode>>(db);
+            var result = TreeServices.GetTree();
+         
 
             return result;
         }
