@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductivityTools.Meetings.CoreObjects;
+using ProducvitityTools.Meetings.Queries;
 
 namespace ProductivityTools.Meetings.WebApi.Controllers
 {
@@ -12,6 +13,15 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
     [ApiController]
     public class TreeController : ControllerBase
     {
+        ITreeQueries TreeQueries;
+
+        private IHttpContextAccessor _httpContextAccessor;
+
+        public TreeController(ITreeQueries treeQueries)
+        {
+            this.TreeQueries = treeQueries;
+        }
+
         [HttpPost]
         [Route("Get")]
         public List<TreeNode> GetTree()

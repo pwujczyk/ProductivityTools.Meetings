@@ -48,7 +48,7 @@ namespace ProductivityTools.Meetings.Database
             modelBuilder.HasDefaultSchema("mt");
             modelBuilder.Entity<Meeting>().HasKey(x => x.MeetingId);
             modelBuilder.Entity<Tree>().HasKey(x => x.TreeId);
-            modelBuilder.Entity<Tree>().HasOne(x => x.Parent).WithMany(;
+           // modelBuilder.Entity<Tree>().HasOne(x => x.Parent).WithMany(x => x.Parent);
 
             base.OnModelCreating(modelBuilder);
         }

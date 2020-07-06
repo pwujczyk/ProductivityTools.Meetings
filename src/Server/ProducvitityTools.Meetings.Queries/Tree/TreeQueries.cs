@@ -6,7 +6,12 @@ using System.Text;
 
 namespace ProducvitityTools.Meetings.Queries
 {
-    class TreeQueries
+    public interface ITreeQueries
+    {
+        List<TreeNode> GetTree();
+    }
+
+    class TreeQueries: ITreeQueries
     {
         MeetingContext MeetingContext;
 
@@ -17,13 +22,11 @@ namespace ProducvitityTools.Meetings.Queries
 
         public List<TreeNode> GetTree()
         {
-            var result = this.MeetingContext..OrderByDescending(x => x.Date).ToList();
-            return result;
+            throw new Exception();
+            //var result = this.MeetingContext..OrderByDescending(x => x.Date).ToList();
+            //return result;
         }
 
-        public void GetTree()
-        {
-
-        }
+      
     }
 }

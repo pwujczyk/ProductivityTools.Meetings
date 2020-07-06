@@ -11,6 +11,7 @@ namespace ProducvitityTools.Meetings.Queries
         public static IServiceCollection ConfigureServicesQueries(this IServiceCollection services)
         {
             services.AddScoped<IMeetingQueries, MeetingQueries>();
+            services.AddScoped<ITreeQueries, TreeQueries>();
             services.ConfigureServicesDatabase();
             return services;
         }
