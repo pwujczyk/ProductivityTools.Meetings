@@ -117,6 +117,18 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         #endregion
 
+        #region TreeId
+        private static readonly DependencyProperty TreeIdProperty =
+            DependencyProperty.Register("TreeId", typeof(string), typeof(MeetingItemControl));
+
+        public string TreeId
+        {
+            get { return (string)GetValue(TreeIdProperty); }
+            set { SetValue(TreeIdProperty, value); }
+        }
+
+        #endregion
+
         #region Date
         private void OnDateChanged(DependencyPropertyChangedEventArgs e)
         {
