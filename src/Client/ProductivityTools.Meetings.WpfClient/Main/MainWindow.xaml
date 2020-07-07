@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
         xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
+        xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanResize">
     <Grid>
@@ -17,10 +18,16 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TreeView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}" >
+        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="treeView_SelectedItemChanged">
+            
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <i:InvokeCommandAction Command="{Binding FilterMeetingsCommand}" CommandParameter="{Binding  ElementName=treeView, Path=SelectedItem}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Nodes}">
-                    
+
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Nodes}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}"></TextBlock>
                         <TextBlock Text="{Binding Id}"></TextBlock>

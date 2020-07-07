@@ -21,7 +21,9 @@ namespace ProductivityTools.Meetings.WpfClient
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
         public ICommand LoginCommand { get; }
+        public ICommand FilterMeetingsCommand { get; }
         public string Secret { get; set; }
+        public TreeNode SelectedTreeNode { get; set; }
 
 
         public MeetingsVM()
@@ -30,10 +32,25 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Tree = new ObservableCollection<TreeNode>();
             GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
             NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
+            this.FilterMeetingsCommand = new CommandHandler(FilterMeeting, () => true);
+
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
             this.Tree.Add(new TreeNode("Pawel"));
             this.Tree.Add(new TreeNode("Marcin"));
+        }
+
+        private async void FilterMeeting(object parameter)
+        {
+            //pw: move client to property
+            MeetingsClient client = new MeetingsClient(this.Secret);
+            if (parameter!=null)
+            {
+                var selectedItem = (TreeNode)parameter;
+                var xx = await client.GetMeetings(selectedItem.Id);
+                UpdateMeetings(xx);
+            }
+           
         }
 
         private async void GetMeetings()
@@ -45,17 +62,22 @@ namespace ProductivityTools.Meetings.WpfClient
                 var tree = await client.GetTree();
                 this.Tree.Clear();
                 tree.ForEach(x => this.Tree.Add(x));
-                this.Meetings.Clear();
-                foreach (var item in xx)
-                {
-                    var meeting = new MeetingItemVM(item);
-                    this.Meetings.Add(meeting);
-                }
+                UpdateMeetings(xx);
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+        }
+
+        private void UpdateMeetings(List<Meeting> xx)
+        {
+            this.Meetings.Clear();
+            foreach (var item in xx)
+            {
+                var meeting = new MeetingItemVM(item);
+                this.Meetings.Add(meeting);
             }
         }
 

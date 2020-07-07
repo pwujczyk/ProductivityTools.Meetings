@@ -28,5 +28,10 @@ namespace ProductivityTools.Meetings.WpfClient
             InitializeComponent();
             this.DataContext = new MeetingsVM();
         }
+
+        private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+
+        }
     }
 }

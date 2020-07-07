@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using ProductivityTools.Meetings.CoreObjects;
+using ProductivityTools.Meetings.Services;
 using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 using System;
@@ -26,13 +27,15 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         private readonly IMapper mapper;
         IMeetingQueries MeetingQueries;
         IMeetingCommands MeetingCommands;
+        IMeetingService MeetingService;
         private readonly IConfiguration configuration;
         private IHttpContextAccessor _httpContextAccessor;
 
-        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMapper mapper, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public MeetingsController(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, IMeetingService meetingService, IMapper mapper, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             this.MeetingQueries = meetingQueries;
             this.mapper = mapper;
+            this.MeetingService = meetingService;
             this.MeetingCommands = meetingCommands;
             this.configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
@@ -69,14 +72,14 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
 
-        [HttpPost]
-        [Route("List5")]
-        public List<Meeting> Get5(object name)
-        {
-            var partresult = MeetingQueries.GetMeetings();
-            List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
-            return result.Take(1).ToList();
-        }
+        //[HttpPost]
+        //[Route("List5")]
+        //public List<Meeting> Get5(object name)
+        //{
+        //    var partresult = MeetingQueries.GetMeetings();
+        //    List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
+        //    return result.Take(1).ToList();
+        //}
 
         private void SaveToLog(string message)
         {
@@ -90,7 +93,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [Route(Consts.ListName)]
-        public async Task<List<Meeting>> Get(object name)
+        public async Task<List<Meeting>> GetList(MeetingId meetingId)
         {
             //var xx = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
@@ -114,17 +117,9 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             //dynamic userInfo = response.Content.ReadAsStringAsync().Result;
 
             SaveToLog("Request started");
-            var remotesecret = name.ToString();
-            string s = Environment.GetEnvironmentVariable("MeetingsSecret",EnvironmentVariableTarget.Machine);
-            if (!string.IsNullOrEmpty(s))
-            {
-                if (remotesecret!=s)
-                {
-                    throw new Exception("Wrong secret");
-                }
-            }
-            var partresult = MeetingQueries.GetMeetings();
-            List<Meeting> result = this.mapper.Map<List<Meeting>>(partresult);
+            
+            //var partresult = this.MeetingService.GetMeetings(treeNodeId);
+            List<Meeting> result = this.MeetingService.GetMeetings(meetingId.Id);
             SaveToLog("Meetings mapped");
             return result;
         }
