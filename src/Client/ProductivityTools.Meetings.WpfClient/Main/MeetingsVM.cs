@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ProductivityTools.Meetings.WpfClient
@@ -23,7 +24,6 @@ namespace ProductivityTools.Meetings.WpfClient
         public ICommand LoginCommand { get; }
         public ICommand FilterMeetingsCommand { get; }
         public string Secret { get; set; }
-        public TreeNode SelectedTreeNode { get; set; }
 
 
         public MeetingsVM()

@@ -18,24 +18,19 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}" SelectedItemChanged="treeView_SelectedItemChanged">
-            
+        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
-                    <i:InvokeCommandAction Command="{Binding FilterMeetingsCommand}" CommandParameter="{Binding  ElementName=treeView, Path=SelectedItem}" PassEventArgsToCommand="True"/>
+                    <i:InvokeCommandAction Command="{Binding FilterMeetingsCommand}" PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <TreeView.ItemTemplate>
-
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=Nodes}">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}"></TextBlock>
                         <TextBlock Text="{Binding Id}"></TextBlock>
                     </StackPanel>
                 </HierarchicalDataTemplate>
-                <!--<DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                </DataTemplate>-->
             </TreeView.ItemTemplate>
         </TreeView>
         <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>

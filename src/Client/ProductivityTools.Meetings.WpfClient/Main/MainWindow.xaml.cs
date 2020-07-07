@@ -31,7 +31,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private void treeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-
+            
         }
     }
 }
