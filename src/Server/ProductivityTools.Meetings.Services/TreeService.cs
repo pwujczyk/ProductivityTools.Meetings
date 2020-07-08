@@ -30,11 +30,34 @@ namespace ProductivityTools.Meetings.Services
             return result;
         }
 
+        private List<int> GetIds(List<TreeNode> nodes)
+        {
+            List<int> result = new List<int>();
+
+            foreach (var subnode in nodes)
+            {
+                result.Add(subnode.Id);
+                var subtree = GetIds(subnode.Nodes);
+                result.AddRange(subtree);
+            }
+            return result;
+        }
+
+        public List<int> GetFlatChildsId(int parent)
+        {
+            List<int> result = new List<int>();
+            var nodes = GetNodes(parent);
+            result = GetIds(nodes);
+            return result;
+        }
+
         public List<TreeNode> GetTree()
         {
             var rootdb = TreeQueries.GetRoot();
             TreeNode root = Mapper.Map<TreeNode>(rootdb);
-            List<TreeNode> result = GetNodes(rootdb.TreeId);
+            root.Nodes = GetNodes(rootdb.TreeId);
+            List<TreeNode> result = new List<TreeNode>();
+            result.Add(root);
             return result;
         }
     }

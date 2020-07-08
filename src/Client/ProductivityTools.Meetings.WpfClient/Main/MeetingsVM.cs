@@ -25,6 +25,18 @@ namespace ProductivityTools.Meetings.WpfClient
         public ICommand FilterMeetingsCommand { get; }
         public string Secret { get; set; }
 
+        MeetingsClient client;
+        private MeetingsClient Client
+        {
+            get
+            {
+                if (this.client == null)
+                {
+                    this.client = new MeetingsClient(this.Secret);
+                }
+                return this.client;
+            }
+        }
 
         public MeetingsVM()
         {
@@ -42,15 +54,17 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private async void FilterMeeting(object parameter)
         {
-            //pw: move client to property
-            MeetingsClient client = new MeetingsClient(this.Secret);
+         
+            var args = (RoutedPropertyChangedEventArgs<object>)parameter;
+            //args.Handled = true;
+            ////pw: move client to property
+            //MeetingsClient client = new MeetingsClient(this.Secret);
             if (parameter!=null)
             {
-                var selectedItem = (TreeNode)parameter;
-                var xx = await client.GetMeetings(selectedItem.Id);
+                TreeNode selectedItem = (TreeNode)args.NewValue;
+                var xx = await Client.GetMeetings(selectedItem.Id);
                 UpdateMeetings(xx);
             }
-           
         }
 
         private async void GetMeetings()
