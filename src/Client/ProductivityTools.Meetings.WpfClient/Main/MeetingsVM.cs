@@ -54,8 +54,9 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private async void FilterMeeting(object parameter)
         {
-         
+            
             var args = (RoutedPropertyChangedEventArgs<object>)parameter;
+            if (args.NewValue == null) { return; }
             //args.Handled = true;
             ////pw: move client to property
             //MeetingsClient client = new MeetingsClient(this.Secret);

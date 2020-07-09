@@ -21,9 +21,9 @@ namespace ProducvitityTools.Meetings.Queries
             return result;
         }
 
-        public List<Meeting> GetMeetings(int treeNodeId)
+        public List<Meeting> GetMeetings(List<int> treeNodeId)
         {
-            var result = this.MeetingContext.Meeting.Where(x=>x.TreeId==treeNodeId).ToList();
+            var result = this.MeetingContext.Meeting.Where(x=> x.TreeId.HasValue &&  treeNodeId.Contains(x.TreeId.Value)).ToList();
             return result;
         }
 

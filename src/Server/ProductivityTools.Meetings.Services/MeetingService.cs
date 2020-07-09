@@ -11,11 +11,13 @@ namespace ProductivityTools.Meetings.Services
     class MeetingService : IMeetingService
     {
         IMeetingQueries MeetingQueries;
+        ITreeService TreeService;
         readonly IMapper Mapper;
 
-        public MeetingService(IMeetingQueries meetingQueries, IMapper mapper)
+        public MeetingService(IMeetingQueries meetingQueries, ITreeService treeService, IMapper mapper)
         {
             this.MeetingQueries = meetingQueries;
+            this.TreeService = treeService;
             this.Mapper = mapper;
         }
 
@@ -32,21 +34,16 @@ namespace ProductivityTools.Meetings.Services
             }
         }
 
+
+
         public List<Meeting> GetMeetingsInternal(int treeNodeId)
         {
-            var result = new List<Meeting>();
-            var dbResult = this.MeetingQueries.GetMeetings(treeNodeId).ToList();
-            var partResult = this.Mapper.Map<List<Meeting>>(dbResult);
-            result.AddRange(partResult);
 
-            List<int> parents = partResult.Where(x => x.MeetingId.HasValue).Select(x => x.MeetingId.Value).ToList<int>();
-
-            foreach (int i in parents)
-            {
-                var childs = GetMeetingsInternal(i);
-                result.AddRange(childs);
-            }
-
+            var trees = this.TreeService.GetFlatChildsId(treeNodeId);
+            trees.Add(treeNodeId);
+            //var result = new List<Meeting>();
+            var dbResult = this.MeetingQueries.GetMeetings(trees).ToList();
+            var result = this.Mapper.Map<List<Meeting>>(dbResult);
             return result;
         }
     }
