@@ -11,7 +11,7 @@ namespace ProductivityTools.Meetings.CoreObjects
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
 
-        public int TreeId { get; set; }
+        public int? TreeId { get; set; }
 
         public Meeting()
         {

@@ -119,11 +119,11 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         #region TreeId
         private static readonly DependencyProperty TreeIdProperty =
-            DependencyProperty.Register("TreeId", typeof(string), typeof(MeetingItemControl));
+            DependencyProperty.Register("TreeId", typeof(int?), typeof(MeetingItemControl));
 
-        public string TreeId
+        public int? TreeId
         {
-            get { return (string)GetValue(TreeIdProperty); }
+            get { return (int?)GetValue(TreeIdProperty); }
             set { SetValue(TreeIdProperty, value); }
         }
 

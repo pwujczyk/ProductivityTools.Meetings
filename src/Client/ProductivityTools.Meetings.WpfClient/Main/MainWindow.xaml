@@ -57,6 +57,7 @@
                         Id="{Binding Meeting.MeetingId}"
                         Save="{Binding SaveMeetingCommand}"
                         Edit="{Binding EditMeetingCommand}"
+                        TreeId="{Binding Meeting.TreeId}"
                         ReadOnly="True"
                         >
                         </meetingitem:MeetingItemControl >

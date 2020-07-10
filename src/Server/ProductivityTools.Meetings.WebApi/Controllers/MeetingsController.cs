@@ -93,7 +93,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [HttpPost]
         [Authorize]
         [Route(Consts.ListName)]
-        public async Task<List<Meeting>> GetList(MeetingId meetingId)
+        public async Task<List<Meeting>> GetList(MeetingId treeNode)
         {
             //var xx = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //var accessToken = await _httpContextAccessor.HttpContext.GetTokenAsync("access_token");
@@ -119,7 +119,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             SaveToLog("Request started");
             
             //var partresult = this.MeetingService.GetMeetings(treeNodeId);
-            List<Meeting> result = this.MeetingService.GetMeetings(meetingId.Id);
+            List<Meeting> result = this.MeetingService.GetMeetings(treeNode.Id);
             SaveToLog("Meetings mapped");
             return result;
         }
