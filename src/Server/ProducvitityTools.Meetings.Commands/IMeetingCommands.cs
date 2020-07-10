@@ -9,5 +9,6 @@ namespace ProducvitityTools.Meetings.Commands
     {
         void Save(Meeting meeting);
         void Update(Meeting meeting);
+        void Delete(Meeting meetingId);
     }
 }

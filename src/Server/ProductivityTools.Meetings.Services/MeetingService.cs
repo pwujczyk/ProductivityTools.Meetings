@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProductivityTools.Meetings.CoreObjects;
+using ProducvitityTools.Meetings.Commands;
 using ProducvitityTools.Meetings.Queries;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ProductivityTools.Meetings.Services
     class MeetingService : IMeetingService
     {
         IMeetingQueries MeetingQueries;
+        IMeetingCommands MeetingCommand;
         ITreeService TreeService;
         readonly IMapper Mapper;
 
@@ -34,17 +36,20 @@ namespace ProductivityTools.Meetings.Services
             }
         }
 
-
-
         public List<Meeting> GetMeetingsInternal(int treeNodeId)
         {
-
             var trees = this.TreeService.GetFlatChildsId(treeNodeId);
             trees.Add(treeNodeId);
             //var result = new List<Meeting>();
             var dbResult = this.MeetingQueries.GetMeetings(trees).ToList();
             var result = this.Mapper.Map<List<Meeting>>(dbResult);
             return result;
+        }
+
+        public void DeleteMeeting(int meetingId)
+        {
+            var meeting=this.MeetingQueries.GetMeeting(meetingId);
+            this.MeetingCommand.Delete(meeting);
         }
     }
 }

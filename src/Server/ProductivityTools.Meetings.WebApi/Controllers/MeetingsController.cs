@@ -161,5 +161,12 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);
             MeetingCommands.Update(dbMeeting);
         }
+
+        [HttpPost]
+        [Route(Consts.DeleteMeetingName)]
+        public void Delete(MeetingId meeting)
+        {
+            MeetingService.DeleteMeeting(meeting.Id.Value);
+        }
     }
 }
