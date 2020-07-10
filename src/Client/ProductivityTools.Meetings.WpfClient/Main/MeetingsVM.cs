@@ -25,6 +25,7 @@ namespace ProductivityTools.Meetings.WpfClient
         public ICommand FilterMeetingsCommand { get; }
         public string Secret { get; set; }
 
+
         MeetingsClient client;
         private MeetingsClient Client
         {
@@ -37,6 +38,7 @@ namespace ProductivityTools.Meetings.WpfClient
                 return this.client;
             }
         }
+        TreeNode TreeNodeSelected { get; set; }
 
         public MeetingsVM()
         {
@@ -54,16 +56,15 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private async void FilterMeeting(object parameter)
         {
-            
+
             var args = (RoutedPropertyChangedEventArgs<object>)parameter;
             if (args.NewValue == null) { return; }
-            //args.Handled = true;
-            ////pw: move client to property
-            //MeetingsClient client = new MeetingsClient(this.Secret);
-            if (parameter!=null)
+
+            if (parameter != null)
             {
                 TreeNode selectedItem = (TreeNode)args.NewValue;
                 var xx = await Client.GetMeetings(selectedItem.Id);
+                this.TreeNodeSelected = selectedItem;
                 UpdateMeetings(xx);
             }
         }
@@ -99,6 +100,8 @@ namespace ProductivityTools.Meetings.WpfClient
         private void NewMeeting()
         {
             var meeting = new CoreObjects.Meeting();
+            meeting.TreeId = this.TreeNodeSelected.Id;
+            meeting.Subject = this.TreeNodeSelected.Name;
             var meetingvm = new MeetingItemVM(meeting);
             this.Meetings.Add(meetingvm);
             EditMeeting edit = new EditMeeting(meeting);
