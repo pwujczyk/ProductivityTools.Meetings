@@ -20,6 +20,7 @@
              Id="{Binding Meeting.MeetingId}"
              TreeId ="{Binding Meeting.TreeId, Mode=TwoWay}"
              Save="{Binding SaveMeetingCommand}"
+             Delete="{Binding DeleteMeetingCommand}"
              ReadOnly="False"/>
     </Grid>
 </Window>

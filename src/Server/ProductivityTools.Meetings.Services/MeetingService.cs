@@ -16,10 +16,11 @@ namespace ProductivityTools.Meetings.Services
         ITreeService TreeService;
         readonly IMapper Mapper;
 
-        public MeetingService(IMeetingQueries meetingQueries, ITreeService treeService, IMapper mapper)
+        public MeetingService(IMeetingQueries meetingQueries, IMeetingCommands meetingCommands, ITreeService treeService, IMapper mapper)
         {
             this.MeetingQueries = meetingQueries;
             this.TreeService = treeService;
+            this.MeetingCommand = meetingCommands;
             this.Mapper = mapper;
         }
 

@@ -50,19 +50,9 @@ namespace ProducvitityTools.Meetings.Commands
             MeetingContext.SaveChanges();
         }
 
-        void IMeetingCommands.Delete(int meetingId)
-        {//pw: not used
-
-            MeetingContext.Meeting.Attach(meeting);
-            MeetingContext.Entry(meeting).State = EntityState.Modified;
-
-            var ChangeTracker = MeetingContext.ChangeTracker;
-
-            var addedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Added).ToList();
-            var modifiedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Modified).ToList();
-            var deletedEntities = ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted).ToList();
-
-
+        void IMeetingCommands.Delete(Meeting meeting)
+        {
+            MeetingContext.Meeting.Remove(meeting);
             MeetingContext.SaveChanges();
         }
     }
