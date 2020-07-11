@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls"
         mc:Ignorable="d"
-        Title="EditTreeNode" Height="40" Width="300">
+        Title="EditTreeNode" Height="80px" Width="300px">
     <Grid>
-        <TextBox Height="20px" Width="200px" HorizontalAlignment="Left">pawel</TextBox>
-        <Button Content="Add" Height="20px" Width="50px" HorizontalAlignment="Left" Margin="200 0 0 0"></Button>
+        <TextBox Height="20px" Width="200px" HorizontalAlignment="Left" Text="{Binding NewTreeNodeName}"></TextBox>
+        <Button Content="Add" Height="20px" Width="50px" HorizontalAlignment="Left" Margin="200 0 0 0" Command="{Binding AddCommand}"></Button>
     </Grid>
     
 </Window>

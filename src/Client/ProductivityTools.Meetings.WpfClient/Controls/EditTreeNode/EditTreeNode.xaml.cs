@@ -23,7 +23,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
             InitializeComponent();
         }
 
-        public EditTreeNode(TreeNode treeNode)
+        public EditTreeNode(TreeNode treeNode) : this()
         {
             this.DataContext = new EditTreeNodeVM(treeNode);
         }

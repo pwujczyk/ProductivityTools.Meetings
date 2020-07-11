@@ -36,7 +36,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [Route(Consts.TreeControlerNewNode)]
         public void AddTreeNode(NewTreeNodeRequest request)
         {
-            throw new Exception("working");
+           // throw new Exception("working");
         }
     }
 }

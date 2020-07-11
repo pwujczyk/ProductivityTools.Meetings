@@ -9,6 +9,8 @@ namespace ProductivityTools.Meetings.CoreObjects
         public string Name { get; set; }
         public int Parent { get; set; }
 
+        public NewTreeNodeRequest() { }
+
         public NewTreeNodeRequest(int parent, string name)
         {
             this.Name = name;
