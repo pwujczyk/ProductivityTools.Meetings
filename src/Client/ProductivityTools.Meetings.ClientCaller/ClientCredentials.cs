@@ -10,7 +10,6 @@ namespace ProductivityTools.Meetings.ClientCaller
         internal static string IdToken { get; private set; }
         internal static string AccessToken { get; private set; }
 
-
         public static void SetCredentials(string idToken, string accessToken)
         {
             IdToken = idToken;

@@ -23,6 +23,8 @@ namespace ProductivityTools.Meetings.WpfClient
         public ICommand NewMeetingCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand FilterMeetingsCommand { get; }
+        public ICommand AddTreeNodeCommand { get; }
+        public ICommand RemoveTreeNodeCommand { get; }
         public string Secret { get; set; }
 
 
@@ -44,14 +46,21 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             this.Tree = new ObservableCollection<TreeNode>();
-            GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
-            NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
+            this.GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
+            this.NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
             this.FilterMeetingsCommand = new CommandHandler(FilterMeeting, () => true);
+            this.AddTreeNodeCommand = new CommandHandler(AddTreeNode, () => true);
 
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
             this.Tree.Add(new TreeNode("Pawel"));
             this.Tree.Add(new TreeNode("Marcin"));
+        }
+
+        private void AddTreeNode()
+        {
+            EditTreeNode edit = new EditTreeNode();
+            edit.ShowDialog();
         }
 
         private async void FilterMeeting(object parameter)
@@ -106,7 +115,6 @@ namespace ProductivityTools.Meetings.WpfClient
             this.Meetings.Add(meetingvm);
             EditMeeting edit = new EditMeeting(meeting);
             edit.Show();
-
         }
     }
 }

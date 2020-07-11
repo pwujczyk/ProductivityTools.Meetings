@@ -15,6 +15,8 @@ namespace ProductivityTools.Meetings.CoreObjects
 
 
         public const string TreeControllerName = "Tree";
-        public const string GetControllerName = "Get";
+        public const string TreeControlerGet = "Get";
+        public const string TreeControlerNewNode = "NewNode";
     }
 }
+

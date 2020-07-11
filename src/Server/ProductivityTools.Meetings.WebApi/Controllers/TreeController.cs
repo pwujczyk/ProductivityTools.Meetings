@@ -25,18 +25,18 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Get")]
+        [Route(Consts.TreeControlerGet)]
         public List<TreeNode> GetTree()
         {
-         //   List<TreeNode> result = new List<TreeNode>();
-            //result.Add(new TreeNode("EcoVadis"));
-            //result[0].Nodes = new List<TreeNode>();
-            //result[0].Nodes.Add(new TreeNode("DevSteering"));
-            //result.Add(new TreeNode("Pawel"));
             var result = TreeServices.GetTree();
-         
-
             return result;
+        }
+
+        [HttpPost]
+        [Route(Consts.TreeControlerNewNode)]
+        public void AddTreeNode(NewTreeNodeRequest request)
+        {
+            throw new Exception("working");
         }
     }
 }

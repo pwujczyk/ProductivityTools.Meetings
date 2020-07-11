@@ -18,6 +18,8 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Button Grid.Column="0" Grid.Row="0" Width="30" HorizontalAlignment="Left" Command="{Binding AddTreeNodeCommand}">+</Button>
+        <Button Grid.Column="0" Grid.Row="0" Width="30" HorizontalAlignment="Left" Margin="30 0 0 0" Command="{Binding RemoveTreeNodeCommand}">-</Button>
         <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">

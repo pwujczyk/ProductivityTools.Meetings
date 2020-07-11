@@ -109,9 +109,14 @@ namespace ProductivityTools.Meetings.ClientCaller
 
         public async Task<List<TreeNode>> GetTree()
         {
-            var r = await this.HttpPostClient.PostAsync<List<TreeNode>>(Consts.TreeControllerName, Consts.GetControllerName);
-            //return r;
+            var r = await this.HttpPostClient.PostAsync<List<TreeNode>>(Consts.TreeControllerName, Consts.TreeControlerGet);
             return r;
+        }
+
+        public async Task<object> NewTreeNode(int parentTreeId, string name)
+        {
+            var r = await this.HttpPostClient.PostAsync<object>(Consts.TreeControllerName, Consts.TreeControlerNewNode, new NewTreeNodeRequest(parentTreeId, name));
+                return r;
         }
 
     }
