@@ -3,6 +3,7 @@ using ProductivityTools.Meetings.CoreObjects;
 using ProducvitityTools.Meetings.Queries;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ProductivityTools.Meetings.Services
 {
@@ -58,6 +59,11 @@ namespace ProductivityTools.Meetings.Services
             List<TreeNode> result = new List<TreeNode>();
             result.Add(root);
             return result;
+        }
+
+        public void AddTreeNode(int parentId, string name)
+        {
+            this.TreeQueries.AddTreNode(parentId, name);
         }
     }
 }

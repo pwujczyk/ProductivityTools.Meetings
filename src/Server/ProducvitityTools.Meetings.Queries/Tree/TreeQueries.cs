@@ -12,6 +12,8 @@ namespace ProducvitityTools.Meetings.Queries
     {
         TreeNode GetRoot();
         List<TreeNode> GetTree(int parentId);
+        TreeNode GetTreeNode(int id);
+        void AddTreNode(int parentId, string name);
     }
 
     class TreeQueries : ITreeQueries
@@ -35,6 +37,18 @@ namespace ProducvitityTools.Meetings.Queries
             return result;
         }
 
+        public TreeNode GetTreeNode(int id)
+        {
+            var result = this.MeetingContext.Tree.SingleOrDefault(x => x.TreeId == id);
+            return result;
+        }
+
+        public void AddTreNode(int parentId, string name)
+        {
+            TreeNode tree = new TreeNode() { ParentId = parentId, Name = name };
+            this.MeetingContext.Tree.Add(tree);
+            this.MeetingContext.SaveChanges();
+        }
 
     }
 }
