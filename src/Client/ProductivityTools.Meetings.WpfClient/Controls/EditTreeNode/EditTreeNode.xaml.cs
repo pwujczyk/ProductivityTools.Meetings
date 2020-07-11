@@ -14,11 +14,10 @@ using System.Windows.Shapes;
 
 namespace ProductivityTools.Meetings.WpfClient.Controls
 {
-    /// <summary>
-    /// Interaction logic for EditTreeNode.xaml
-    /// </summary>
     public partial class EditTreeNode : Window
     {
+        private TreeNode ParentTreeNode;
+
         public EditTreeNode()
         {
             InitializeComponent();
@@ -26,7 +25,7 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
 
         public EditTreeNode(TreeNode treeNode)
         {
-            this.DataContext = new EditTreeNodeVM();
+            this.DataContext = new EditTreeNodeVM(treeNode);
         }
     }
 }

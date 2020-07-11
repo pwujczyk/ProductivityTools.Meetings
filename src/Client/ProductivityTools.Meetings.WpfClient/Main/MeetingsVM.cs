@@ -59,7 +59,7 @@ namespace ProductivityTools.Meetings.WpfClient
 
         private void AddTreeNode()
         {
-            EditTreeNode edit = new EditTreeNode();
+            EditTreeNode edit = new EditTreeNode(TreeNodeSelected);
             edit.ShowDialog();
         }
 
