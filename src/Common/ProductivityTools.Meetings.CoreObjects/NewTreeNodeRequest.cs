@@ -4,16 +4,17 @@ using System.Text;
 
 namespace ProductivityTools.Meetings.CoreObjects
 {
-    public class TreeNode
+    public class NewTreeNodeRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public List<TreeNode> Nodes { get; set; }
+        public int Parent { get; set; }
 
-        public TreeNode(string name)
+        public NewTreeNodeRequest() { }
+
+        public NewTreeNodeRequest(int parent, string name)
         {
             this.Name = name;
-            this.Nodes = new List<TreeNode>();
+            this.Parent = parent;
         }
     }
 }

@@ -22,7 +22,6 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             this.Meeting = meeting;
             EditMeetingCommand = new CommandHandler(EditMeetingClick, () => true);
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
-   
         }
 
         private void EditMeetingClick()
@@ -36,7 +35,5 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
             MeetingsClient client = new MeetingsClient(null);
             await client.SaveMeeting(this.Meeting);
         }
-
-       
     }
 }

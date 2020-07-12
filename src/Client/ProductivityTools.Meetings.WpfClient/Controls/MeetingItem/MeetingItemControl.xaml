@@ -27,6 +27,8 @@
             <TextBox Name="MeetingSubjectControl" HorizontalAlignment="Left" Text="{Binding Subject}" BorderBrush="{x:Null}" FontSize="14" FontWeight="Bold"></TextBox>
             <Button x:Name="EditMeeting" Content="Edit" Width="30" Command="{Binding Edit}" ></Button>
             <Button x:Name="SaveMeeting" Content="Save" Width="30" Command="{Binding Save}" ></Button>
+            <Button x:Name="DeleteMeeting" Content="Delete" Width="30" Command="{Binding Delete}" ></Button>
+            <TextBox Name="MeetingTreeId" HorizontalAlignment="Left" Text="{Binding TreeId}" Width="100px" FontWeight="Bold"></TextBox>
         </StackPanel>
 
         <notes:NotesControl x:Name="BeforeNotesControl" Grid.Row="2" Label="Before meeting" Text="{Binding BeforeNotes, Mode=TwoWay}"/>

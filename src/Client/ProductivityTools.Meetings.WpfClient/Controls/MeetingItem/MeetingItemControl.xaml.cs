@@ -54,6 +54,22 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
 
         #endregion
 
+        #region DeleteCommand
+
+
+        public ICommand Delete
+        {
+            get { return (ICommand)GetValue(DeleteProperty); }
+            set { SetValue(DeleteProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Save.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty DeleteProperty =
+            DependencyProperty.Register("Delete", typeof(ICommand), typeof(MeetingItemControl));
+
+
+        #endregion
+
 
         #region BeforeNotes
         public static readonly DependencyProperty BeforeNotesProperty =
@@ -113,6 +129,18 @@ namespace ProductivityTools.Meetings.WpfClient.Controls.MeetingItem
         {
             get { return (string)GetValue(MeetingSubjectProperty); }
             set { SetValue(MeetingSubjectProperty, value); }
+        }
+
+        #endregion
+
+        #region TreeId
+        private static readonly DependencyProperty TreeIdProperty =
+            DependencyProperty.Register("TreeId", typeof(int?), typeof(MeetingItemControl));
+
+        public int? TreeId
+        {
+            get { return (int?)GetValue(TreeIdProperty); }
+            set { SetValue(TreeIdProperty, value); }
         }
 
         #endregion

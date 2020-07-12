@@ -43,7 +43,7 @@ namespace ProductivityTools.Meetings.ClientCaller
                     if (tokenResponse.IsError)
                     {
                         Console.WriteLine(tokenResponse.Error);
-                        
+
                     }
 
                     Console.WriteLine(tokenResponse.Json);
@@ -69,25 +69,26 @@ namespace ProductivityTools.Meetings.ClientCaller
             }
         }
 
+
         public MeetingsClient(string secret)
         {
             this.Secret = secret;
             this.HttpPostClient = new SimpleHttpPostClient.HttpPostClient(true);
-            
-           // this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
 
-            this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
+            // this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
+
+            //this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
 
             //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
-            // this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
+             this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
             //this.HttpPostClient.SetBaseUrl("http://192.168.1.51:8081/api");
             this.HttpPostClient.HttpClient.SetBearerToken(Token);
 
         }
 
-        public async Task<List<Meeting>> GetMeetings()
+        public async Task<List<Meeting>> GetMeetings(int? treeNodeId = null)
         {
-            var r = this.HttpPostClient.PostAsync<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName, Secret ?? "");
+            var r = this.HttpPostClient.PostAsync<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName,new MeetingId() { Id = treeNodeId } );
             return await r;
         }
 
@@ -100,5 +101,23 @@ namespace ProductivityTools.Meetings.ClientCaller
         {
             await this.HttpPostClient.PostAsync<Meeting>(Consts.MeetingControllerName, Consts.AddMeetingName, meeting);
         }
+
+        public async Task DeleteMeeting(MeetingId meetingId)
+        {
+            await this.HttpPostClient.PostAsync<object>(Consts.MeetingControllerName, Consts.DeleteMeetingName, meetingId);
+        }
+
+        public async Task<List<TreeNode>> GetTree()
+        {
+            var r = await this.HttpPostClient.PostAsync<List<TreeNode>>(Consts.TreeControllerName, Consts.TreeControlerGet);
+            return r;
+        }
+
+        public async Task<object> NewTreeNode(int parentTreeId, string name)
+        {
+            var r = await this.HttpPostClient.PostAsync<object>(Consts.TreeControllerName, Consts.TreeControlerNewNode, new NewTreeNodeRequest(parentTreeId, name));
+                return r;
+        }
+
     }
 }

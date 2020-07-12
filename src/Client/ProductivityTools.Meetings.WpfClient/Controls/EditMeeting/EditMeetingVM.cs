@@ -12,17 +12,25 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
     {
         public Meeting Meeting { get; set; }
         public ICommand SaveMeetingCommand { get; }
+        public ICommand DeleteMeetingCommand { get; }
 
         public EditMeetingVM(Meeting meeting)
         {
             this.Meeting = meeting;
             SaveMeetingCommand = new CommandHandler(SaveMeetingClick, () => true);
+            DeleteMeetingCommand = new CommandHandler(DeleteMeetingClick, () => true);
         }
 
         private async void SaveMeetingClick()
         {
             MeetingsClient client = new MeetingsClient(null);
             await client.SaveMeeting(this.Meeting);
+        }
+
+        private async void DeleteMeetingClick()
+        {
+            MeetingsClient client = new MeetingsClient(null);
+            await client.DeleteMeeting(new MeetingId() { Id = this.Meeting.MeetingId });
         }
     }
 }

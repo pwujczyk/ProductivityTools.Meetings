@@ -18,7 +18,9 @@
              DuringNotes="{Binding Meeting.DuringNotes, Mode=TwoWay}" 
              AfterNotes="{Binding Meeting.AfterNotes, Mode=TwoWay}"
              Id="{Binding Meeting.MeetingId}"
+             TreeId ="{Binding Meeting.TreeId, Mode=TwoWay}"
              Save="{Binding SaveMeetingCommand}"
+             Delete="{Binding DeleteMeetingCommand}"
              ReadOnly="False"/>
     </Grid>
 </Window>

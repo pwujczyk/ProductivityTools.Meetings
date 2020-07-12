@@ -5,19 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductivityTools.Meetings.WpfClient"
         xmlns:meetingitem="clr-namespace:ProductivityTools.Meetings.WpfClient.Controls.MeetingItem"
+        xmlns:i="clr-namespace:Microsoft.Xaml.Behaviors;assembly=Microsoft.Xaml.Behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
-        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="100px,0px,0px,0px" Command="{Binding NewMeetingCommand}" Content="New"></Button>
-        
-        <TextBox Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="200px,0px,0px,0px" Text="{Binding Secret}"></TextBox>
-        <Button Grid.Row="0" Width="100px" HorizontalAlignment="Left" Margin="300px,0px,0px,0px" Command="{Binding LoginCommand}" Content="Login"></Button>
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200px"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" Width="30" HorizontalAlignment="Left" Command="{Binding AddTreeNodeCommand}">+</Button>
+        <Button Grid.Column="0" Grid.Row="0" Width="30" HorizontalAlignment="Left" Margin="30 0 0 0" Command="{Binding RemoveTreeNodeCommand}">-</Button>
+        <TreeView x:Name="treeView" Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Tree}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectedItemChanged">
+                    <i:InvokeCommandAction Command="{Binding FilterMeetingsCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Nodes}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Id}"></TextBlock>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Command="{Binding GetMeetingsCommand}" Content="Refresh"></Button>
+        <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="100px,0px,0px,0px" Command="{Binding NewMeetingCommand}" Content="New"></Button>
+
+        <TextBox Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="200px,0px,0px,0px" Text="{Binding Secret}"></TextBox>
+        <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="300px,0px,0px,0px" Command="{Binding LoginCommand}" Content="Login"></Button>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -36,6 +59,7 @@
                         Id="{Binding Meeting.MeetingId}"
                         Save="{Binding SaveMeetingCommand}"
                         Edit="{Binding EditMeetingCommand}"
+                        TreeId="{Binding Meeting.TreeId}"
                         ReadOnly="True"
                         >
                         </meetingitem:MeetingItemControl >
