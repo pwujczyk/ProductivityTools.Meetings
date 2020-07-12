@@ -117,9 +117,9 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             //dynamic userInfo = response.Content.ReadAsStringAsync().Result;
 
             SaveToLog("Request started");
-            
+
             //var partresult = this.MeetingService.GetMeetings(treeNodeId);
-            List<Meeting> result = this.MeetingService.GetMeetings(treeNode.Id);
+            List<Meeting> result =  await this.MeetingService.GetMeetings(treeNode.Id).OrderByDescending(x => x.Date).ToList();
             SaveToLog("Meetings mapped");
             return result;
         }
