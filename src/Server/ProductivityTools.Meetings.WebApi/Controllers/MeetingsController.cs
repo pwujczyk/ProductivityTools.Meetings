@@ -109,7 +109,7 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
             SaveToLog("Request started");
 
             //var partresult = this.MeetingService.GetMeetings(treeNodeId);
-            List<Meeting> result =  await this.MeetingService.GetMeetings(treeNode.Id).OrderByDescending(x => x.Date).ToList();
+            List<Meeting> result =  this.MeetingService.GetMeetings(treeNode.Id).OrderByDescending(x => x.Date).ToList();
             SaveToLog("Meetings mapped");
             return result;
         }
