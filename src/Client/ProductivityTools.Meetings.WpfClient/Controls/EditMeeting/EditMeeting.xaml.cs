@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace ProductivityTools.Meetings.WpfClient.Controls
 {
-    /// <summary>
-    /// Interaction logic for EditMeeting.xaml
-    /// </summary>
     public partial class EditMeeting : Window
     {
         public EditMeeting()
