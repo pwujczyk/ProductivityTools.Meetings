@@ -18,6 +18,7 @@ namespace ProductivityTools.Meetings.WpfClient
     {
         public ObservableCollection<MeetingItemVM> Meetings { get; set; }
         public ObservableCollection<TreeNode> Tree { get; set; }
+        public bool DrillDown { get; set; }
 
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
@@ -72,7 +73,7 @@ namespace ProductivityTools.Meetings.WpfClient
             if (parameter != null)
             {
                 TreeNode selectedItem = (TreeNode)args.NewValue;
-                var xx = await Client.GetMeetings(selectedItem.Id);
+                var xx = await Client.GetMeetings(selectedItem.Id, DrillDown);
                 this.TreeNodeSelected = selectedItem;
                 UpdateMeetings(xx);
             }
