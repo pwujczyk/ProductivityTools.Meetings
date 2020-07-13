@@ -24,11 +24,11 @@ namespace ProductivityTools.Meetings.Services
             this.Mapper = mapper;
         }
 
-        public List<Meeting> GetMeetings(int? treeNodeId)
+        public List<Meeting> GetMeetings(int? treeNodeId, bool drillDown)
         {
             if (treeNodeId.HasValue)
             {
-                return GetMeetingsInternal(treeNodeId.Value);
+                return GetMeetingsInternal(treeNodeId.Value, drillDown);
 
             }
             else
@@ -37,10 +37,14 @@ namespace ProductivityTools.Meetings.Services
             }
         }
 
-        public List<Meeting> GetMeetingsInternal(int treeNodeId)
+        public List<Meeting> GetMeetingsInternal(int treeNodeId, bool drillDown)
         {
-            var trees = this.TreeService.GetFlatChildsId(treeNodeId);
-            trees.Add(treeNodeId);
+            var trees = new List<int>() { treeNodeId };
+            if (drillDown)
+            {
+                trees.AddRange(this.TreeService.GetFlatChildsId(treeNodeId));
+            }
+
             //var result = new List<Meeting>();
             var dbResult = this.MeetingQueries.GetMeetings(trees).ToList();
             var result = this.Mapper.Map<List<Meeting>>(dbResult);
@@ -49,7 +53,7 @@ namespace ProductivityTools.Meetings.Services
 
         public void DeleteMeeting(int meetingId)
         {
-            var meeting=this.MeetingQueries.GetMeeting(meetingId);
+            var meeting = this.MeetingQueries.GetMeeting(meetingId);
             this.MeetingCommand.Delete(meeting);
         }
     }

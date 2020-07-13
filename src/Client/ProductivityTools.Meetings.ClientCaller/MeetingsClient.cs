@@ -80,15 +80,15 @@ namespace ProductivityTools.Meetings.ClientCaller
             //this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
 
             //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
-             this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
+            this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
             //this.HttpPostClient.SetBaseUrl("http://192.168.1.51:8081/api");
             this.HttpPostClient.HttpClient.SetBearerToken(Token);
 
         }
 
-        public async Task<List<Meeting>> GetMeetings(int? treeNodeId = null)
+        public async Task<List<Meeting>> GetMeetings(int? treeNodeId = null, bool drillDown = true)
         {
-            var r = this.HttpPostClient.PostAsync<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName,new MeetingId() { Id = treeNodeId } );
+            var r = this.HttpPostClient.PostAsync<List<Meeting>>(Consts.MeetingControllerName, Consts.ListName, new MeetingListRequest() { Id = treeNodeId, DrillDown = drillDown });
             return await r;
         }
 
@@ -116,7 +116,7 @@ namespace ProductivityTools.Meetings.ClientCaller
         public async Task<object> NewTreeNode(int parentTreeId, string name)
         {
             var r = await this.HttpPostClient.PostAsync<object>(Consts.TreeControllerName, Consts.TreeControlerNewNode, new NewTreeNodeRequest(parentTreeId, name));
-                return r;
+            return r;
         }
 
     }
