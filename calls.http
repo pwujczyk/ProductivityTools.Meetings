@@ -1,1 +1,8 @@
-http://localhost:5002//Echo/Date
+http://localhost:5002/Echo/Date
+
+
+###
+https://meetings.productivitytools.tech:8081/Echo/Date
+
+###
+https://meetings.productivitytools.tech:8081/api/Echo/Date
