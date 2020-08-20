@@ -29,7 +29,7 @@ namespace ProducvitityTools.Meetings.Commands
             MeetingContext.SaveChanges();
         }
 
-        void IMeetingCommands.Save(Meeting meeting)
+        int IMeetingCommands.Save(Meeting meeting)
         {
             if (meeting.MeetingId == null)
             {
@@ -48,6 +48,7 @@ namespace ProducvitityTools.Meetings.Commands
 
 
             MeetingContext.SaveChanges();
+            return meeting.MeetingId.Value;
         }
 
         void IMeetingCommands.Delete(Meeting meeting)

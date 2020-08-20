@@ -69,39 +69,7 @@ namespace ProductivityTools.Meetings.ClientCaller
             }
         }
 
-        public void RenewTokens()
-        {
-            var disco = await DiscoveryClient.GetAsync(Constants.Authority);
-            if (disco.IsError) throw new Exception(disco.Error);
 
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "mvc.hybrid", "secret");
-            var rt = await HttpContext.Authentication.GetTokenAsync("refresh_token");
-            var tokenResult = await tokenClient.RequestRefreshTokenAsync(rt);
-
-            if (!tokenResult.IsError)
-            {
-                var old_id_token = await HttpContext.Authentication.GetTokenAsync("id_token");
-                var new_access_token = tokenResult.AccessToken;
-                var new_refresh_token = tokenResult.RefreshToken;
-
-                var tokens = new List<AuthenticationToken>();
-                tokens.Add(new AuthenticationToken { Name = OpenIdConnectParameterNames.IdToken, Value = old_id_token });
-                tokens.Add(new AuthenticationToken { Name = OpenIdConnectParameterNames.AccessToken, Value = new_access_token });
-                tokens.Add(new AuthenticationToken { Name = OpenIdConnectParameterNames.RefreshToken, Value = new_refresh_token });
-
-                var expiresAt = DateTime.UtcNow + TimeSpan.FromSeconds(tokenResult.ExpiresIn);
-                tokens.Add(new AuthenticationToken { Name = "expires_at", Value = expiresAt.ToString("o", CultureInfo.InvariantCulture) });
-
-                var info = await HttpContext.Authentication.GetAuthenticateInfoAsync("Cookies");
-                info.Properties.StoreTokens(tokens);
-                await HttpContext.Authentication.SignInAsync("Cookies", info.Principal, info.Properties);
-
-                return Redirect("~/Home/Secure");
-            }
-
-            ViewData["Error"] = tokenResult.Error;
-            return View("Error");
-        }
 
         public MeetingsClient(string secret)
         {
@@ -110,10 +78,10 @@ namespace ProductivityTools.Meetings.ClientCaller
 
             // this.HttpPostClient.SetBaseUrl("https://localhost:44366/api");//iis
 
-            //this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
+            this.HttpPostClient.SetBaseUrl("http://localhost:5002/api");//vs
 
             //this.HttpPostClient.SetBaseUrl("https://productivitytools.tech:443/api");
-            this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
+           // this.HttpPostClient.SetBaseUrl("https://meetings.productivitytools.tech:8081/api");
             //this.HttpPostClient.SetBaseUrl("http://192.168.1.51:8081/api");
             this.HttpPostClient.HttpClient.SetBearerToken(Token);
 
@@ -130,9 +98,9 @@ namespace ProductivityTools.Meetings.ClientCaller
             await this.HttpPostClient.PostAsync<Meeting>(Consts.MeetingControllerName, Consts.UpdateMeetingName, meeting);
         }
 
-        public async Task SaveMeeting(Meeting meeting)
+        public async Task<int> SaveMeeting(Meeting meeting)
         {
-            await this.HttpPostClient.PostAsync<Meeting>(Consts.MeetingControllerName, Consts.AddMeetingName, meeting);
+            return await this.HttpPostClient.PostAsync<int>(Consts.MeetingControllerName, Consts.AddMeetingName, meeting);
         }
 
         public async Task DeleteMeeting(MeetingId meetingId)

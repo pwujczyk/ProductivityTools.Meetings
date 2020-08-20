@@ -24,7 +24,8 @@ namespace ProductivityTools.Meetings.WpfClient.Controls
         private async void SaveMeetingClick()
         {
             MeetingsClient client = new MeetingsClient(null);
-            await client.SaveMeeting(this.Meeting);
+            int meetingId=await client.SaveMeeting(this.Meeting);
+            this.Meeting.MeetingId = meetingId;
         }
 
         private async void DeleteMeetingClick()

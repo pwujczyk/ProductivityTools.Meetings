@@ -138,10 +138,11 @@ namespace ProductivityTools.Meetings.WebApi.Controllers
         [HttpPost]
         [Route(Consts.AddMeetingName)]
         //add validation
-        public void Save(Meeting meeting)
+        public int Save(Meeting meeting)
         {
             Database.Objects.Meeting dbMeeting = this.mapper.Map<Database.Objects.Meeting>(meeting);
-            MeetingCommands.Save(dbMeeting);
+            int meetingId=MeetingCommands.Save(dbMeeting);
+            return meetingId;
         }
 
         [HttpPost]

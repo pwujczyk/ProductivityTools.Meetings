@@ -7,7 +7,7 @@ namespace ProducvitityTools.Meetings.Commands
 {
     public interface IMeetingCommands
     {
-        void Save(Meeting meeting);
+        int Save(Meeting meeting);
         void Update(Meeting meeting);
         void Delete(Meeting meetingId);
     }
