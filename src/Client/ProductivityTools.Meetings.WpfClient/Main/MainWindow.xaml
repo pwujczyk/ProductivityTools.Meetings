@@ -41,6 +41,7 @@
 
         <TextBox Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="200px,0px,0px,0px" Text="{Binding Secret}"></TextBox>
         <Button Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="300px,0px,0px,0px" Command="{Binding LoginCommand}" Content="Login"></Button>
+        <Label Grid.Row="0" Grid.Column="1" Width="100px" HorizontalAlignment="Left" Margin="400px,0px,0px,0px"  Content="{Binding Message, Mode=OneWay}"></Label>
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Visible" CanContentScroll="True" >
             <ItemsControl ItemsSource="{Binding Meetings}">
                 <ItemsControl.ItemsPanel>

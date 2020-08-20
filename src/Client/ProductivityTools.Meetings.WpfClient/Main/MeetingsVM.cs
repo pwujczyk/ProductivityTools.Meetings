@@ -1,4 +1,5 @@
 ﻿using IdentityModel.Client;
+using IdentityModel.OidcClient;
 using ProductivityTools.Meetings.ClientCaller;
 using ProductivityTools.Meetings.CoreObjects;
 using ProductivityTools.Meetings.WpfClient.Automapper;
@@ -19,6 +20,7 @@ namespace ProductivityTools.Meetings.WpfClient
         public ObservableCollection<MeetingItemVM> Meetings { get; set; }
         public ObservableCollection<TreeNode> Tree { get; set; }
         public bool DrillDown { get; set; }
+        public string Message { get; set; } 
 
         public ICommand GetMeetingsCommand { get; }
         public ICommand NewMeetingCommand { get; }
@@ -45,17 +47,55 @@ namespace ProductivityTools.Meetings.WpfClient
 
         public MeetingsVM()
         {
+            this.Message = "init";
             this.Meetings = new ObservableCollection<MeetingItemVM>();
             this.Tree = new ObservableCollection<TreeNode>();
             this.GetMeetingsCommand = new CommandHandler(GetMeetings, () => true);
             this.NewMeetingCommand = new CommandHandler(NewMeeting, () => true);
             this.FilterMeetingsCommand = new CommandHandler(FilterMeeting, () => true);
             this.AddTreeNodeCommand = new CommandHandler(AddTreeNode, () => true);
+            this.LoginCommand = new CommandHandler(Login, () => true);
 
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core", Subject = "fdsa" }));
             this.Meetings.Add(new MeetingItemVM(new CoreObjects.Meeting() { AfterNotes = "Core", BeforeNotes = "Core", DuringNotes = "Core" }));
             this.Tree.Add(new TreeNode("Pawel"));
             this.Tree.Add(new TreeNode("Marcin"));
+        }
+
+        private OidcClient _oidcClient = null;
+        private async void Login()
+        {
+            var options = new OidcClientOptions()
+            {
+                Authority = "https://localhost:5001/",
+                ClientId = "MeetingsWpfApplication",
+                Scope = "openid profile name",
+                RedirectUri = "http://127.0.0.1/sample-wpf-app",
+                Browser = new WpfEmbeddedBrowser()
+            };
+
+            _oidcClient = new OidcClient(options);
+
+            LoginResult result;
+            try
+            {
+                result = await _oidcClient.LoginAsync();
+            }
+            catch (Exception ex)
+            {
+                Message = $"Unexpected Error: {ex.Message}";
+                return;
+            }
+
+            if (result.IsError)
+            {
+                Message = result.Error == "UserCancel" ? "The sign-in window was closed before authorization was completed." : result.Error;
+            }
+            else
+            {
+                var name = result.User.Identity.Name;
+                Message = $"Hello {name}";
+            }
         }
 
         private void AddTreeNode()
