@@ -69,7 +69,7 @@ namespace ProductivityTools.Meetings.WpfClient
             {
                 Authority = "https://localhost:5001/",
                 ClientId = "MeetingsWpfApplication",
-                Scope = "openid profile name",
+                Scope = "openid profile",
                 RedirectUri = "http://127.0.0.1/sample-wpf-app",
                 Browser = new WpfEmbeddedBrowser()
             };
