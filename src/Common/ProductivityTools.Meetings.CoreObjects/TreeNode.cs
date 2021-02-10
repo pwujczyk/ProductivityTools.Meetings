@@ -7,12 +7,12 @@ namespace ProductivityTools.Meetings.CoreObjects
     public class TreeNode
     {
         public int Id { get; set; }
-        public string Value { get; set; }
+        public string Name { get; set; }
         public List<TreeNode> Nodes { get; set; }
 
         public TreeNode(string name)
         {
-            this.Value = name;
+            this.Name = name;
             this.Nodes = new List<TreeNode>();
         }
     }

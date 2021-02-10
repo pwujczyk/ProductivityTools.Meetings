@@ -151,7 +151,7 @@ namespace ProductivityTools.Meetings.WpfClient
         {
             var meeting = new CoreObjects.Meeting();
             meeting.TreeId = this.TreeNodeSelected.Id;
-            meeting.Subject = this.TreeNodeSelected.Value;
+            meeting.Subject = this.TreeNodeSelected.Name;
             var meetingvm = new MeetingItemVM(meeting);
             this.Meetings.Add(meetingvm);
             EditMeeting edit = new EditMeeting(meeting);
